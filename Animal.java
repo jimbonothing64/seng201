@@ -63,36 +63,18 @@ public class Animal {
 	}
 	
 	
+	public void feedItem(AnimalItem item) {
+		setHappiness(item.getHappiness() + happiness);
+		setHealth(item.getHealth() + health);
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {
-		Animal animal = new Animal();
-		System.out.println(farmer);
+		Animal animal = new Cow();
+		System.out.println(animal);
 	}
-	
-	
-	public void feedItem(AnimalItem item) {
-		item.getHappiness()
-		item.getHealth()
-	}
-	
 
 }
 
-public class Cow extends Animal {
-	public Cow() {
-		super("cow", 200, 2, 20, 5);
-	}
-}
-
-public class Chicken extends Animal {
-	public Chicken() {
-		super("chicken", 50, 5, 10, 5);
-	}
-}
-
-public class Pig extends Animal {
-	public Pig() {
-		super("pig", 150, 2, 20, 2);
-	}
-}

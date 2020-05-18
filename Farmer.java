@@ -2,6 +2,7 @@
 public class Farmer {
 	
 	private String name;
+	private int age;
 	
 	public Farmer(String fname) {
 		name = fname;

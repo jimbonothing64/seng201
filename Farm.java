@@ -1,7 +1,7 @@
 
 public class Farm {
-	private int type;
-	private String name;
-	
-	
+	private String farmType;
+	private Farmer farmOwner;
+	private
+
 }

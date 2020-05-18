@@ -6,6 +6,6 @@
 public class Main {
 	private int day;
 	private int totalDays;
-	private Farmer farmer = new Farmer("asd");
+	private Farmer farmer;
 
 }

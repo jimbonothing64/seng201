@@ -43,6 +43,18 @@ public class Animal {
 
 public class Cow extends Animal {
 	public Cow() {
-		super("Cow", 200, 2, 200, 5);
+		super("cow", 200, 2, 200, 5);
+	}
+}
+
+public class Chicken extends Animal {
+	public Chicken() {
+		super("chicken", 50, 5, 100, 5);
+	}
+}
+
+public class Pig extends Animal {
+	public Pig() {
+		super("pig", 150, 2, 200, 2);
 	}
 }

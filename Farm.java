@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Farm {
 	private String farmType;
-	private ArrayList<Animal> animals;
+	private ArrayList<Animal> animals = new ArrayList<Animal>();
 	private ArrayList<Crop> crops = new ArrayList<Crop>();
 	private int money;
 	

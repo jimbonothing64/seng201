@@ -29,5 +29,14 @@ public class Animal {
 	public int getHealth() {
 		return health;
 	}
+	
+	public static void main(String[] args) {
+		Animal animal = new Animal();
+		System.out.println(farmer);
+	}
 
+}
+
+public class Cow extends Animal {
+	
 }

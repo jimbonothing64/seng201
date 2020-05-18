@@ -6,8 +6,12 @@ public class Animal {
 	private int baseReward;
 	private int health;
 	
-	public Animal() {
-		
+	public Animal(String type, int price, int happy, int reward, int healthLevel) {
+		animalType = type;
+		purchacePrice = price;
+		happiness = happy;
+		baseReward = reward;
+		health = healthLevel;
 	}
 	
 	public String getAnimalType() {
@@ -38,5 +42,7 @@ public class Animal {
 }
 
 public class Cow extends Animal {
-	
+	public Cow() {
+		super("Cow", 200, 2, 200, 5);
+	}
 }

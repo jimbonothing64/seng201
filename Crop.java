@@ -5,7 +5,8 @@
 public class Crop {
 	private String name;
 	private int cost;
-	private int harvestable;
+	private int harvestable = 3;
+	private int income;
 	
 	// creates a crop object with different values based on name
 	public Crop(String type) {
@@ -27,7 +28,9 @@ public class Crop {
 	public String getName() {
 		return name;
 	}
-
+	public int getIncome() {
+		return income;
+	}
 
 	// functionality methods
 	public void mature(int i) {

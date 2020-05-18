@@ -6,7 +6,6 @@ public class Farmer {
 	
 	private String name;
 	private int age;
-	private int money;
 	
 	public Farmer(String fname, int num) {
 		age = num;
@@ -21,13 +20,8 @@ public class Farmer {
 		return age;
 	}
 	
-	public int getMoney() {
-		return money;
-	}
 	// setter methods -- name and age can't be changed once set.
-	public void setMoney(int amount) {
-		money = amount;
-	}
+
 	public static void main(String[] args) {
 		
 

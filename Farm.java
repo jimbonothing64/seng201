@@ -1,6 +1,7 @@
+import java.util.ArrayList;
 
 public class Farm {
 	private String farmType;
-	private 
+	private ArrayList<Animal> animals;
 
 }

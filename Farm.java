@@ -24,4 +24,11 @@ public class Farm {
 		}
 		
 	}
+	
+	// feed all animals with item
+	public void feedAnimals(AnimalItem item) {
+		for (int i = 0; i < animals.size(); i++) {
+			animals.get(i).feedItem(item);
+		}
+	}
 }

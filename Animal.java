@@ -72,8 +72,12 @@ public class Animal {
 	
 	
 	public static void main(String[] args) {
-		Animal animal = new Cow();
+		Animal animal = new Pig();
+		Animal cow = new Cow();
+		Animal chicken = new Chicken();
 		System.out.println(animal);
+		System.out.println(cow);
+		System.out.println(chicken);
 	}
 
 }

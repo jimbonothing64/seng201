@@ -104,6 +104,11 @@ public class MarketWindow {
 	public MarketWindow() {
 		initialize();
 	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -113,6 +118,16 @@ public class MarketWindow {
 		frame.setBounds(100, 100, 732, 398);
 		frame.getContentPane().setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(10, 282, 141, 66);
+		frame.getContentPane().add(backButton);
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				closeWindow();
+				
+			}
+		});
 		
 		JList<String> list = new JList<String>();
 		list.setBackground(Color.WHITE);
@@ -133,7 +148,8 @@ public class MarketWindow {
 		frame.getContentPane().add(list);
 		
 		JLabel moneyLabel = new JLabel("money = " + farm.getMoney());
-		moneyLabel.setBounds(162, 263, 76, 14);
+		moneyLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		moneyLabel.setBounds(269, 282, 98, 14);
 		frame.getContentPane().add(moneyLabel);
 		
 		JButton purchase1 = new JButton("Purchase");
@@ -260,6 +276,8 @@ public class MarketWindow {
 		JButton purchase4 = new JButton("Purchase");
 		purchase4.setBounds(493, 141, 89, 23);
 		frame.getContentPane().add(purchase4);
+		
+
 		purchase4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String itemString = list4.getSelectedValue();

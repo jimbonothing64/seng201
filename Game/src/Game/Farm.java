@@ -18,10 +18,7 @@ public class Farm {
 	private int daysLeft;
 	
 	
-	//temp fix later
-	public Farm() {
-		money = 200;
-	}
+
 	// sets farm bonuses based on farm type
 	public Farm(String type, Farmer owner, int days) {
 		farmer = owner;
@@ -132,7 +129,7 @@ public class Farm {
 	
 	public static void main(String[] args) {
 		Farmer brown = new Farmer("brown", 26);
-		Farm farm = new Farm("Volcanic Soil Plantation", brown);
+		Farm farm = new Farm("Volcanic Soil Plantation", brown, 10);
 		Crop e = new Crop("lettuce");
 		Crop ee = new Crop("pumpkin");
 		Cow a = new Cow();

@@ -141,16 +141,31 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(lblYearsDisplay);
 		
 		JRadioButton rdbtnVolcanicSoilFarm = new JRadioButton("Volcanic Soil Plantation");
+		rdbtnVolcanicSoilFarm.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (rdbtnVolcanicSoilFarm.isSelected()) {
+					farmType = rdbtnVolcanicSoilFarm.getText();
+				}
+			}
+		});
 		FarmTypeGroup.add(rdbtnVolcanicSoilFarm);
 		rdbtnVolcanicSoilFarm.setBounds(95, 165, 161, 23);
 		panelFarmInfo.add(rdbtnVolcanicSoilFarm);
 		
 		JRadioButton rdbtnSwissAlpsMeadow = new JRadioButton("Swiss Alps Meadow");
+		rdbtnSwissAlpsMeadow.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (rdbtnSwissAlpsMeadow.isSelected()) {
+					farmType = rdbtnSwissAlpsMeadow.getText();
+				}
+			}
+		});
 		FarmTypeGroup.add(rdbtnSwissAlpsMeadow);
 		rdbtnSwissAlpsMeadow.setBounds(95, 139, 161, 23);
 		panelFarmInfo.add(rdbtnSwissAlpsMeadow);
 		
 		JRadioButton rdbtnFixerUpper = new JRadioButton("Fixer-Upper");
+		rdbtnFixerUpper.setSelected(true);
 		rdbtnFixerUpper.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnFixerUpper.isSelected()) {
@@ -163,6 +178,13 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(rdbtnFixerUpper);
 		
 		JRadioButton rdbtnHumbleRanch = new JRadioButton("Humble Ranch");
+		rdbtnHumbleRanch.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (rdbtnHumbleRanch.isSelected()) {
+					farmType = rdbtnHumbleRanch.getText();
+				}
+			}
+		});
 		FarmTypeGroup.add(rdbtnHumbleRanch);
 		rdbtnHumbleRanch.setBounds(95, 113, 161, 23);
 		panelFarmInfo.add(rdbtnHumbleRanch);
@@ -219,6 +241,11 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(sliderDays);
 		
 		JButton btnStart = new JButton("Start Adventure!");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				startGame();
+			}
+		});
 		btnStart.setBackground(new Color(51, 204, 0));
 		btnStart.setBounds(561, 323, 145, 23);
 		frmFarmSetup.getContentPane().add(btnStart);
@@ -245,7 +272,7 @@ public class FarmSetupWindow {
 	}
 	
 	public void startGame() {
-		manager.farm = getGameConfig();
+		manager.setFarm(getGameConfig());
 		closeWindow();
 	}
 }

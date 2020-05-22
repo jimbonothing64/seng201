@@ -13,9 +13,14 @@ public class Main {
 		FarmSetupWindow setupWindow = new FarmSetupWindow(outManager);
 	}
 	
+	public void setFarm(Farm newFarm) {
+		farm = newFarm;
+	}
+	
 	public static void main(String[] args) {
 		Main manager = new Main();
 		manager.launchSetupWindow(manager);
+		System.out.println(manager.farm.getMoney());
 		
 	}
 

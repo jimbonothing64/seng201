@@ -179,6 +179,10 @@ public class MarketWindow {
 		JButton purchase2 = new JButton("Purchase");
 		purchase2.setBounds(190, 141, 89, 23);
 		frame.getContentPane().add(purchase2);
+		
+		JList<String> list3 = new JList<String>();
+		list3.setBounds(330, 26, 111, 116);
+		frame.getContentPane().add(list3);
 		purchase2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String itemString = list2.getSelectedValue();

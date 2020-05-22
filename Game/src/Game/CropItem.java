@@ -12,15 +12,15 @@ public class CropItem {
 		
 		name = type;
 		
-		if (type == "1") {
-			cost = 3;
-			value = 1;
-		} else 	if (type == "2") {
-			cost = 3;
+		if (type == "fertiliser") {
+			cost = 20;
 			value = 2;
-		} else if (type == "3") {
-			cost = 3;
-			value = 3;
+		} else 	if (type == "rootblast") {
+			cost = 45;
+			value = 5;
+		} else if (type == "compost") {
+			cost = 35;
+			value = 4;
 		}
 	}
 	

@@ -12,10 +12,30 @@ public class Crop {
 	// creates a crop object with different values based on name
 	public Crop(String type) {
 		name = type;
-		if (type == "1") {
-			cost = 1;
-		} else if (type == "2") {
-			cost = 1;
+		if (type == "potato") {
+			cost = 2;
+			harvestable = 2;
+			income = 5;
+		} else if (type == "wheat") {
+			cost = 3;
+			harvestable = 4;
+			income = 10;
+	    } else if (type == "carrot ") {
+	    	cost = 5;
+			harvestable = 3;
+			income = 10;
+	    } else if (type == "pumpkin") {
+	    	cost = 6;
+			harvestable = 7;
+			income = 20;
+	    } else if (type == "melon") {
+	    	cost = 7;
+			harvestable = 4;
+			income = 15;
+	    } else if (type == "lettuce") {
+			cost = 2;
+			harvestable = 3;
+			income = 7;
 	    }
     }
 	

@@ -28,7 +28,8 @@ public class Farm {
 			money = 100;
 		}
 	}
-	//setter getters
+	
+	// returns string of formatted crop and animal info
 	
 	public String getAnimalInfo () {
 		String animalInfo = "Animal List:\n";
@@ -56,6 +57,7 @@ public class Farm {
 		
 		return cropInfo;
 	}
+	//setter getters
 	
 	public void setMoney(int amount) {
 		money = amount;
@@ -70,9 +72,9 @@ public class Farm {
 		crops.add(crop);
 	}
 	//matures each crop by 1 day at the end of each day
-	public void growCrops() {
+	public void growCrops(int day) {
 		for (int i = 0; i < crops.size(); i++) {
-			crops.get(i).mature(1);
+			crops.get(i).mature(day);
 		}
 		
 	}
@@ -112,16 +114,16 @@ public class Farm {
 	
 	public static void main(String[] args) {
 		Farm farm = new Farm("hhh");
-		Crop e = new Crop("ss");
-		Crop ee = new Crop("ss");
+		Crop e = new Crop("lettuce");
+		Crop ee = new Crop("pumpkin");
 		Cow a = new Cow();
 		Chicken b = new Chicken();
 		farm.addAnimal(a);
 		farm.addAnimal(a);
 		farm.addAnimal(b);
 		farm.addCrop(e);
-		e.mature(3);
 		farm.addCrop(ee);
+		farm.growCrops(3);
 		farm.harvest();
 		System.out.println(farm.getCropInfo());
 		//System.out.println(farm.getAnimalInfo());

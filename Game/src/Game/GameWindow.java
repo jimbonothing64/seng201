@@ -164,6 +164,12 @@ public class GameWindow {
 		panelMisc.setLayout(null);
 		
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
+		btnTendToFarmland.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.getFarm().tendFarm();
+				updateFarmInfo();
+			}
+		});
 		btnTendToFarmland.setToolTipText("Uses 1 action and slows down decay of animal happiness");
 		btnTendToFarmland.setBounds(10, 11, 179, 51);
 		panelMisc.add(btnTendToFarmland);
@@ -174,7 +180,10 @@ public class GameWindow {
 				int earnings = manager.getFarm().endDay();
 				updateFarmInfo();
 				if (earnings > 0) {
-				JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
+					JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
+				}
+				if (manager.getFarm().getHappyDecay() == 0) {
+					JOptionPane.showMessageDialog(null,"Your farm is in bad shape! Tend to it or your animals will become less happy");
 				}
 			}
 		});

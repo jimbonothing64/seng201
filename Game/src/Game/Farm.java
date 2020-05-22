@@ -79,6 +79,12 @@ public class Farm {
 			crop.mature(1);
 		}
 	}
+	public void addAnimalItem(AnimalItem item) {
+		animalItems.add(item);
+	}
+	public void addCropItem(CropItem item) {
+		cropItems.add(item);
+	}
 	//matures each crop by 1 day at the end of each day
 	public void growCrops(int day) {
 		for (int i = 0; i < crops.size(); i++) {

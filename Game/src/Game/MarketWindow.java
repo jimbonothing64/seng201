@@ -16,15 +16,39 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 
+
 public class MarketWindow {
 
 	private JFrame frame;
-	private int money = 100;
+	private Farmer farmer = new Farmer("brown", 15);
+	private Farm farm = new Farm("asd", farmer, 5);
 
 	/**
 	 * Launch the application.
 	 */
-	public void addItem(Farm f, cost c) {
+	public void addCrop(Farm farm, int amount) {
+		if (amount == 2) {
+			Crop plant = new Crop("potato");
+			farm.addCrop(plant);
+		} else if (amount == 3) {
+			Crop plant = new Crop("lettuce");
+			farm.addCrop(plant);
+		} else if (amount == 4) {
+			Crop plant = new Crop("pumpkin");
+			farm.addCrop(plant);
+		} else if (amount == 5) {
+			Crop plant = new Crop("carrot");
+			farm.addCrop(plant);
+		}else if (amount == 6) {
+			Crop plant = new Crop("wheat");
+			farm.addCrop(plant);
+		}else if (amount == 7) {
+			Crop plant = new Crop("melon");
+			farm.addCrop(plant);
+		}
+		
+		
+		
 		
 	}
 	public static void main(String[] args) {
@@ -61,9 +85,9 @@ public class MarketWindow {
 		list.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		list.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"potato         $3",
-					"lettuce        $2","pumpkin      $6","carrot         $5",
-					"wheat         $3","melon         $7"};
+			String[] values = new String[] {"potato         $2",
+					"lettuce        $3","pumpkin      $4","carrot         $5",
+					"wheat         $6","melon         $7"};
 			public int getSize() {
 				return values.length;
 			}
@@ -71,15 +95,15 @@ public class MarketWindow {
 				return values[index];
 			}
 		});
-		list.setBounds(10, 24, 111, 116);
+		list.setBounds(40, 24, 111, 116);
 		frame.getContentPane().add(list);
 		
-		JLabel moneyLabel = new JLabel("money = " + money);
+		JLabel moneyLabel = new JLabel("money = " + farm.getMoney());
 		moneyLabel.setBounds(162, 263, 76, 14);
 		frame.getContentPane().add(moneyLabel);
 		
 		JButton purchase1 = new JButton("Purchase");
-		purchase1.setBounds(10, 141, 89, 23);
+		purchase1.setBounds(45, 141, 89, 23);
 		frame.getContentPane().add(purchase1);
 		purchase1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,18 +113,58 @@ public class MarketWindow {
 				}
 				else {
 					int value = itemString.charAt(itemString.length()-1);
-					if (money < value - '0') {
+					if (farm.getMoney() < value - '0') {
 						JOptionPane.showMessageDialog(null,"insufficient funds"); 
 				} 
 					else {
-						money -= itemString.charAt(itemString.length()-1) -'0';
-						moneyLabel.setText("money = " + money);
+						int num = itemString.charAt(itemString.length()-1) -'0';
+						farm.setMoney(farm.getMoney() - num);
+						addCrop(farm, num);
+						moneyLabel.setText("money = " + farm.getMoney());
 				}
 			}
 			}
 			});
+		JList<String> list2 = new JList<String>();
+		list2.setBackground(Color.WHITE);
+		list2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		list2.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = new String[] {"fertiliser        $2",
+					"compost        $3","rootblast       $4",};
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list2.setBounds(180, 24, 111, 116);
+		frame.getContentPane().add(list2);
 		
-
+		JButton purchase2 = new JButton("Purchase");
+		purchase2.setBounds(190, 141, 89, 23);
+		frame.getContentPane().add(purchase2);
+		purchase2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String itemString = list2.getSelectedValue();
+				if(itemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				}
+				else {
+					int value = itemString.charAt(itemString.length()-1);
+					if (farm.getMoney() < value - '0') {
+						JOptionPane.showMessageDialog(null,"insufficient funds"); 
+				} 
+					else {
+						int num = itemString.charAt(itemString.length()-1) -'0';
+						farm.setMoney(farm.getMoney() - num);
+						//addItem(farm, num);
+						moneyLabel.setText("money = " + farm.getMoney());
+				}
+			}
+			}
+			});
 		
 	}
 }

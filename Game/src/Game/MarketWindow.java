@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.AbstractListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -80,6 +82,8 @@ public class MarketWindow {
 			public void actionPerformed(ActionEvent e) {
 				String itemString = list.getSelectedValue();
 				int value = itemString.charAt(itemString.length()-1);
+				if (money < value - '0') {
+					JOptionPane.showMessageDialog(null,"insufficient funds"); }
 				money -= itemString.charAt(itemString.length()-1) -'0';
 				moneyLabel.setText("money = " + money);
 			}

@@ -6,6 +6,8 @@ package Game;
  */
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 public class Farm {
 	private Farmer farmer;
 	private String farmType;
@@ -19,6 +21,11 @@ public class Farm {
 	private int totalDays;
 	private int actionPoints;
 	private int happyDecay;
+	
+/*	if(totalDays == currentDay) {
+		JOptionPane.showMessageDialog(null,"Congratulations! "
+				+ "you have finished the game with a total of $" + money);
+	}; */
 	
 	
 
@@ -146,6 +153,10 @@ public class Farm {
 	public void tendFarm() {
 		actionPoints += 1;
 		happyDecay += 3;
+	}
+	
+	public boolean actionValid() {
+		return actionPoints < 2;
 	}
 	
 	public int harvest() {

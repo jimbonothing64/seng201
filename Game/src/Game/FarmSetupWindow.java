@@ -90,7 +90,7 @@ public class FarmSetupWindow {
 		
 		JLabel lblCustomizeFarmerHeading = new JLabel("Customize Your Farmer:");
 		lblCustomizeFarmerHeading.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCustomizeFarmerHeading.setBounds(10, 5, 676, 14);
+		lblCustomizeFarmerHeading.setBounds(10, 0, 676, 19);
 		lblCustomizeFarmerHeading.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelFarmerInfo.add(lblCustomizeFarmerHeading);
 		
@@ -122,7 +122,7 @@ public class FarmSetupWindow {
 		sliderFarmerAge.setValue(25);
 		sliderFarmerAge.setMaximum(95);
 		sliderFarmerAge.setMinimum(18);
-		sliderFarmerAge.setBounds(478, 31, 208, 14);
+		sliderFarmerAge.setBounds(462, 30, 208, 25);
 		panelFarmerInfo.add(sliderFarmerAge);
 		
 		JPanel panelFarmInfo = new JPanel();

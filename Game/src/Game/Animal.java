@@ -44,9 +44,9 @@ public class Animal {
 	// Setter Methods
 	
 	public void setHappiness(int value) {
-		if ((happiness + value <= 10) && (happiness + value >= 0)) {
+		if ((value <= 10) && (value >= 0)) {
 			happiness = value;
-		} else if (happiness + value >= 0) {
+		} else if (value >= 0) {
 			happiness = 0;
 		} else {
 			happiness = 10;
@@ -54,15 +54,18 @@ public class Animal {
 	}
 	
 	public void setHealth(int value) {
-		if ((health + value <= 10) && (health + value >= 0)) {
+		if ((value <= 10) && (value >= 0)) {
 			health = value;
-		} else if (health + value >= 0) {
+		} else if (value >= 0) {
 			health = 0;
 		} else {
 			health = 10;
 		}
 	}
 	
+	public String toString() {
+		return animalType + ": \n" + "HEALTH: " + health + "  HAPPINESS: " + happiness + "  DAILY REWARD: " + getDailyReward();
+	}
 	
 	public void feedItem(AnimalItem item) {
 		setHappiness(item.getHappiness() + happiness);
@@ -70,6 +73,9 @@ public class Animal {
 	}
 	
 	
+	public void pet(int pettingBonus) {
+		setHappiness(happiness + 1 + pettingBonus);
+	}
 	
 	
 	public static void main(String[] args) {

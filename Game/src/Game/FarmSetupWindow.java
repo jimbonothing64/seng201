@@ -273,6 +273,6 @@ public class FarmSetupWindow {
 	
 	public void startGame() {
 		manager.setFarm(getGameConfig());
-		closeWindow();
+		finishedWindow();
 	}
 }

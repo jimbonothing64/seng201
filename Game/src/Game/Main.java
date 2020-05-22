@@ -5,22 +5,31 @@ package Game;
  * run this class to play the game.
  */
 public class Main {
-	private int day;
-	private int totalDays;
 	private Farm farm;
+	
+	public void setFarm(Farm newFarm) {
+		farm = newFarm;
+	}
+	
+	public Farm getFarm() {
+		return farm;
+	}
 	
 	public void launchSetupWindow(Main outManager) {
 		FarmSetupWindow setupWindow = new FarmSetupWindow(outManager);
 	}
 	
-	public void closeSetupWindow(Main outManager) {
+	public void closeSetupWindow(FarmSetupWindow setupWindow) {
+		setupWindow.closeWindow();
+		launchGameWindow();
 		
 	}
 	
-	public void setFarm(Farm newFarm) {
-		farm = newFarm;
-		System.out.println(farm.getMoney());
+	public void launchGameWindow() {
+		GameWindow gameWindow = new GameWindow(this);
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		Main manager = new Main();

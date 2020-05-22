@@ -61,6 +61,11 @@ public class Farm {
 		
 		return cropInfo;
 	}
+	
+	// return farmer info
+	public String getFarmerInfo() {
+		return farmer.getName() + " (" + farmer.getAge() + ")";
+	}
 	//setter getters
 	
 	public void setMoney(int amount) {

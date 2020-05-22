@@ -58,6 +58,14 @@ public class GameWindow {
 		frmFarmOwnerSimulator.setVisible(true);
 		updateFarmInfo();
 	}
+	
+	public void closeWindow() {
+		frmFarmOwnerSimulator.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeGameWindow(this);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -191,6 +199,11 @@ public class GameWindow {
 		panelMisc.add(btnNextDay);
 		
 		JButton btnVisitStore = new JButton("Visit Store");
+		btnVisitStore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		btnVisitStore.setBounds(199, 11, 179, 51);
 		panelMisc.add(btnVisitStore);
 	}

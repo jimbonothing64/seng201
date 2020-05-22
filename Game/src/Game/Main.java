@@ -22,13 +22,28 @@ public class Main {
 	public void closeSetupWindow(FarmSetupWindow setupWindow) {
 		setupWindow.closeWindow();
 		launchGameWindow();
-		
 	}
 	
 	public void launchGameWindow() {
 		GameWindow gameWindow = new GameWindow(this);
 	}
 	
+	public void closeGameWindow(GameWindow gameWindow) {
+		gameWindow.closeWindow();
+		launchMarketWindow();
+		
+	}
+	
+	public void launchMarketWindow() {
+		MarketWindow marketWindow = new MarketWindow(this);
+	}
+	
+	public void closeMarketWindow(MarketWindow marketWindow) {
+		marketWindow.closeWindow();
+		launchGameWindow();
+	}
+	
+
 	
 	
 	public static void main(String[] args) {

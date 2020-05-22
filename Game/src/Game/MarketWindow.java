@@ -22,6 +22,8 @@ public class MarketWindow {
 	private JFrame frame;
 	private Farmer farmer = new Farmer("brown", 15);
 	private Farm farm = new Farm("asd", farmer, 5);
+	
+	private Main manager;
 
 	/**
 	 * Launch the application.
@@ -102,11 +104,23 @@ public class MarketWindow {
 	 * Create the application.
 	 */
 	public MarketWindow() {
+		
+	}
+	
+	public MarketWindow(Main incomingManager) {
+		manager = incomingManager;
+		farm = manager.getFarm();
 		initialize();
+		frame.setVisible(true);
+		
 	}
 	
 	public void closeWindow() {
 		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		manager.closeMarketWindow(this);
 	}
 	
 
@@ -124,7 +138,7 @@ public class MarketWindow {
 		frame.getContentPane().add(backButton);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				closeWindow();
+				finishedWindow();
 				
 			}
 		});

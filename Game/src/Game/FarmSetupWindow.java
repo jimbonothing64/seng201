@@ -44,6 +44,7 @@ public class FarmSetupWindow {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public FarmSetupWindow(Main inMain) {
 		manager = inMain;
@@ -136,6 +137,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnVolcanicSoilFarm.isSelected()) {
 					farmType = rdbtnVolcanicSoilFarm.getText();
+					textFarmTypeInfo.setText("A farm that comes with reduced harvest time from the beautiful soil!");
 				}
 			}
 		});
@@ -148,6 +150,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnSwissAlpsMeadow.isSelected()) {
 					farmType = rdbtnSwissAlpsMeadow.getText();
+					textFarmTypeInfo.setText("A farm that comes with an animal petting bonus due to the nice views!");
 				}
 			}
 		});
@@ -161,6 +164,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnFixerUpper.isSelected()) {
 					farmType = rdbtnFixerUpper.getText();
+					textFarmTypeInfo.setText("A farm that starts you off with extra cash");
 				}
 			}
 		});
@@ -173,6 +177,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnHumbleRanch.isSelected()) {
 					farmType = rdbtnHumbleRanch.getText();
+					textFarmTypeInfo.setText("A farm with no bonuses. For those who like to be challenged!");
 				}
 			}
 		});
@@ -191,6 +196,7 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(lblFarmCustomizeHeader);
 		
 		textFarmTypeInfo = new JTextField();
+		textFarmTypeInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		textFarmTypeInfo.setEditable(false);
 		textFarmTypeInfo.setBounds(274, 89, 412, 103);
 		panelFarmInfo.add(textFarmTypeInfo);

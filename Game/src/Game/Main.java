@@ -15,12 +15,13 @@ public class Main {
 	
 	public void setFarm(Farm newFarm) {
 		farm = newFarm;
+		System.out.println(farm.getMoney());
 	}
 	
 	public static void main(String[] args) {
 		Main manager = new Main();
 		manager.launchSetupWindow(manager);
-		System.out.println(manager.farm.getMoney());
+		
 		
 	}
 

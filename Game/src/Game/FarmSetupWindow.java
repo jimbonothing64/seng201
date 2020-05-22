@@ -39,16 +39,7 @@ public class FarmSetupWindow {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FarmSetupWindow window = new FarmSetupWindow();
-					window.frmFarmSetup.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	
 	}
 
 	/**

@@ -72,8 +72,8 @@ public class FarmSetupWindow {
 		frmFarmSetup.getContentPane().add(panelFarmerInfo);
 		panelFarmerInfo.setLayout(null);
 		
-		JLabel lblFarmerAgeDisplay = new JLabel("25");
-		lblFarmerAgeDisplay.setBounds(461, 30, 25, 14);
+		JLabel lblFarmerAgeDisplay = new JLabel("(25 years)");
+		lblFarmerAgeDisplay.setBounds(401, 30, 67, 14);
 		panelFarmerInfo.add(lblFarmerAgeDisplay);
 		
 		JLabel lblCustomizeFarmerHeading = new JLabel("Customize Your Farmer:");
@@ -93,13 +93,13 @@ public class FarmSetupWindow {
 		txtFarmerName.setColumns(10);
 		
 		JLabel lblFarmerAge = new JLabel("Farmer's Age");
-		lblFarmerAge.setBounds(370, 30, 81, 14);
+		lblFarmerAge.setBounds(317, 30, 81, 14);
 		panelFarmerInfo.add(lblFarmerAge);
 		
 		JSlider sliderFarmerAge = new JSlider();
 		sliderFarmerAge.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				lblFarmerAgeDisplay.setText("" + sliderFarmerAge.getValue());
+				lblFarmerAgeDisplay.setText("(" + sliderFarmerAge.getValue() + " years)");
 			}
 		});
 		sliderFarmerAge.setSnapToTicks(true);
@@ -109,7 +109,7 @@ public class FarmSetupWindow {
 		sliderFarmerAge.setValue(25);
 		sliderFarmerAge.setMaximum(95);
 		sliderFarmerAge.setMinimum(18);
-		sliderFarmerAge.setBounds(496, 31, 190, 14);
+		sliderFarmerAge.setBounds(478, 31, 208, 14);
 		panelFarmerInfo.add(sliderFarmerAge);
 		
 		JPanel panelFarmInfo = new JPanel();
@@ -117,6 +117,10 @@ public class FarmSetupWindow {
 		panelFarmInfo.setBounds(10, 108, 696, 204);
 		frmFarmSetup.getContentPane().add(panelFarmInfo);
 		panelFarmInfo.setLayout(null);
+		
+		JLabel lblYearsDisplay = new JLabel("(7 days)");
+		lblYearsDisplay.setBounds(359, 36, 64, 14);
+		panelFarmInfo.add(lblYearsDisplay);
 		
 		JRadioButton rdbtnVolcanicSoilFarm = new JRadioButton("Volcanic Soil Plantation");
 		FarmTypeGroup.add(rdbtnVolcanicSoilFarm);
@@ -172,16 +176,21 @@ public class FarmSetupWindow {
 		lblGameLength.setBounds(274, 36, 75, 14);
 		panelFarmInfo.add(lblGameLength);
 		
-		JSlider slider = new JSlider();
-		slider.setSnapToTicks(true);
-		slider.setValue(7);
-		slider.setPaintLabels(true);
-		slider.setPaintTicks(true);
-		slider.setMinorTickSpacing(1);
-		slider.setMinimum(5);
-		slider.setMaximum(10);
-		slider.setBounds(355, 31, 331, 26);
-		panelFarmInfo.add(slider);
+		JSlider sliderDays = new JSlider();
+		sliderDays.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				lblYearsDisplay.setText("(" + sliderDays.getValue() + " days)");
+			}
+		});
+		sliderDays.setSnapToTicks(true);
+		sliderDays.setValue(7);
+		sliderDays.setPaintLabels(true);
+		sliderDays.setPaintTicks(true);
+		sliderDays.setMinorTickSpacing(1);
+		sliderDays.setMinimum(5);
+		sliderDays.setMaximum(10);
+		sliderDays.setBounds(424, 31, 262, 26);
+		panelFarmInfo.add(sliderDays);
 		
 		JButton btnStart = new JButton("Start Adventure!");
 		btnStart.setBackground(new Color(51, 204, 0));

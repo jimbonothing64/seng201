@@ -9,18 +9,24 @@ public class Main {
 	private int totalDays;
 	private Farm farm;
 	
-	public void launchSetupWindow(Main outManager) {
-		FarmSetupWindow setupWindow = new FarmSetupWindow(outManager);
+	public void launchSetupWindow() {
+		new FarmSetupWindow(this);
 	}
 	
 	public void setFarm(Farm newFarm) {
 		farm = newFarm;
+		System.out.println(farm.getMoney());
 	}
 	
 	public static void main(String[] args) {
 		Main manager = new Main();
+<<<<<<< HEAD
+		manager.launchSetupWindow();
+		//System.out.println(manager.farm.getMoney());
+=======
 		manager.launchSetupWindow(manager);
-		System.out.println(manager.farm.getMoney());
+		
+>>>>>>> bb52fb0228a1f0bf73eb774654f08f186887de67
 		
 	}
 

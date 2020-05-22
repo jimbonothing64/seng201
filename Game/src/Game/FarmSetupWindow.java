@@ -38,28 +38,24 @@ public class FarmSetupWindow {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					FarmSetupWindow window = new FarmSetupWindow();
-					window.frmFarmSetup.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+	
 	public FarmSetupWindow(Main inMain) {
 		manager = inMain;
 		initialize();
 		frmFarmSetup.setVisible(true);
 		
 	}
+	public FarmSetupWindow() {
+		initialize();
+	}
+	public static void main(String[] args) {
+	
+	}
+
+	/**
+	 * Create the application.
+	 * @wbp.parser.entryPoint
+	 */
 	
 	//Close setup window
 	public void closeWindow() {
@@ -145,6 +141,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnVolcanicSoilFarm.isSelected()) {
 					farmType = rdbtnVolcanicSoilFarm.getText();
+					textFarmTypeInfo.setText("A farm that comes with reduced harvest time from the beautiful soil!");
 				}
 			}
 		});
@@ -157,6 +154,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnSwissAlpsMeadow.isSelected()) {
 					farmType = rdbtnSwissAlpsMeadow.getText();
+					textFarmTypeInfo.setText("A farm that comes with an animal petting bonus due to the nice views!");
 				}
 			}
 		});
@@ -170,6 +168,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnFixerUpper.isSelected()) {
 					farmType = rdbtnFixerUpper.getText();
+					textFarmTypeInfo.setText("A farm that starts you off with extra cash");
 				}
 			}
 		});
@@ -182,6 +181,7 @@ public class FarmSetupWindow {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnHumbleRanch.isSelected()) {
 					farmType = rdbtnHumbleRanch.getText();
+					textFarmTypeInfo.setText("A farm with no bonuses. For those who like to be challenged!");
 				}
 			}
 		});
@@ -200,6 +200,7 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(lblFarmCustomizeHeader);
 		
 		textFarmTypeInfo = new JTextField();
+		textFarmTypeInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		textFarmTypeInfo.setEditable(false);
 		textFarmTypeInfo.setBounds(274, 89, 412, 103);
 		panelFarmInfo.add(textFarmTypeInfo);

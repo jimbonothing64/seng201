@@ -17,25 +17,25 @@ public class Crop {
 			harvestable = 2;
 			income = 5;
 		} else if (type == "wheat") {
-			cost = 3;
-			harvestable = 4;
-			income = 10;
-	    } else if (type == "carrot ") {
-	    	cost = 5;
+			cost = 5;
 			harvestable = 3;
 			income = 10;
+	    } else if (type == "carrot ") {
+	    	cost = 4;
+			harvestable = 4;
+			income = 11;
 	    } else if (type == "pumpkin") {
-	    	cost = 6;
+	    	cost = 10;
 			harvestable = 7;
 			income = 20;
 	    } else if (type == "melon") {
-	    	cost = 7;
+	    	cost = 9;
 			harvestable = 4;
 			income = 15;
 	    } else if (type == "lettuce") {
-			cost = 2;
+			cost = 3;
 			harvestable = 3;
-			income = 7;
+			income = 8;
 	    }
     }
 	

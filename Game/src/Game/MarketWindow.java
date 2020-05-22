@@ -24,6 +24,9 @@ public class MarketWindow {
 	/**
 	 * Launch the application.
 	 */
+	public void addItem(Farm f, cost c) {
+		
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,11 +84,19 @@ public class MarketWindow {
 		purchase1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String itemString = list.getSelectedValue();
-				int value = itemString.charAt(itemString.length()-1);
-				if (money < value - '0') {
-					JOptionPane.showMessageDialog(null,"insufficient funds"); }
-				money -= itemString.charAt(itemString.length()-1) -'0';
-				moneyLabel.setText("money = " + money);
+				if(itemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				}
+				else {
+					int value = itemString.charAt(itemString.length()-1);
+					if (money < value - '0') {
+						JOptionPane.showMessageDialog(null,"insufficient funds"); 
+				} 
+					else {
+						money -= itemString.charAt(itemString.length()-1) -'0';
+						moneyLabel.setText("money = " + money);
+				}
+			}
 			}
 			});
 		

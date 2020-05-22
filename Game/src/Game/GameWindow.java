@@ -19,8 +19,14 @@ import java.awt.event.ActionEvent;
 public class GameWindow {
 
 	private JFrame frmFarmOwnerSimulator;
+	private JLabel lblDaysLeft;
+	private JLabel lblActions;
+	private JLabel lblMoney;
+	private JLabel lblFarmerInfo;
+	
 	
 	private Main manager;
+	
 
 	/**
 	 * Launch the application.
@@ -49,6 +55,7 @@ public class GameWindow {
 		manager = incomingManager;
 		initialize();
 		frmFarmOwnerSimulator.setVisible(true);
+		updateFarmInfo();
 	}
 
 	/**
@@ -127,19 +134,19 @@ public class GameWindow {
 		frmFarmOwnerSimulator.getContentPane().add(panelInfo);
 		panelInfo.setLayout(null);
 		
-		JLabel lblDaysLeft = new JLabel("Day: 0/10");
+		lblDaysLeft = new JLabel("Day: 0/10");
 		lblDaysLeft.setBounds(706, 11, 57, 14);
 		panelInfo.add(lblDaysLeft);
 		
-		JLabel lblActions = new JLabel("Actions: 2/2");
+		lblActions = new JLabel("Actions: 0/2");
 		lblActions.setBounds(564, 11, 81, 14);
 		panelInfo.add(lblActions);
 		
-		JLabel lblMoney = new JLabel("Money: $");
+		lblMoney = new JLabel("Money: $0");
 		lblMoney.setBounds(418, 11, 95, 14);
 		panelInfo.add(lblMoney);
 		
-		JLabel lblFarmerInfo = new JLabel(manager.getFarm().getFarmerInfo());
+		lblFarmerInfo = new JLabel("Farmer (Age)");
 		lblFarmerInfo.setBounds(10, 11, 380, 14);
 		panelInfo.add(lblFarmerInfo);
 		
@@ -161,5 +168,13 @@ public class GameWindow {
 		JButton btnVisitStore = new JButton("Visit Store");
 		btnVisitStore.setBounds(199, 11, 179, 51);
 		panelMisc.add(btnVisitStore);
+	}
+	
+	// update all labels presenting user with basic farm info
+	void updateFarmInfo() {
+		lblDaysLeft.setText("Day: " + manager.getFarm().getCurrentDay() + "/" + manager.getFarm().getTotalDays());
+		lblActions.setText("Actions: " + manager.getFarm().getActionPoints() + "/2");
+		lblMoney.setText("Money: $" + manager.getFarm().getMoney() );
+		lblFarmerInfo.setText(manager.getFarm().getFarmerInfo());
 	}
 }

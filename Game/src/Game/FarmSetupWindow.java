@@ -58,6 +58,9 @@ public class FarmSetupWindow {
 		frmFarmSetup.dispose();
 	}
 	
+	public void finishedWindow() {
+		manager.closeSetupWindow(this);
+	}
 
 	/**
 	 * Initialize the contents of the frame.
@@ -270,6 +273,6 @@ public class FarmSetupWindow {
 	
 	public void startGame() {
 		manager.setFarm(getGameConfig());
-		closeWindow();
+		finishedWindow();
 	}
 }

@@ -19,6 +19,8 @@ import java.awt.event.ActionEvent;
 public class GameWindow {
 
 	private JFrame frmFarmOwnerSimulator;
+	
+	private Main manager;
 
 	/**
 	 * Launch the application.
@@ -41,6 +43,12 @@ public class GameWindow {
 	 */
 	public GameWindow() {
 		initialize();
+	}
+	
+	public GameWindow(Main incomingManager) {
+		manager = incomingManager;
+		initialize();
+		frmFarmOwnerSimulator.setVisible(true);
 	}
 
 	/**
@@ -124,12 +132,16 @@ public class GameWindow {
 		panelInfo.add(lblDaysLeft);
 		
 		JLabel lblActions = new JLabel("Actions: 2/2");
-		lblActions.setBounds(359, 11, 81, 14);
+		lblActions.setBounds(564, 11, 81, 14);
 		panelInfo.add(lblActions);
 		
 		JLabel lblMoney = new JLabel("Money: $");
-		lblMoney.setBounds(10, 11, 70, 14);
+		lblMoney.setBounds(418, 11, 95, 14);
 		panelInfo.add(lblMoney);
+		
+		JLabel lblFarmerInfo = new JLabel(manager.getFarm().getFarmerInfo());
+		lblFarmerInfo.setBounds(10, 11, 380, 14);
+		panelInfo.add(lblFarmerInfo);
 		
 		JPanel panelMisc = new JPanel();
 		panelMisc.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -138,6 +150,7 @@ public class GameWindow {
 		panelMisc.setLayout(null);
 		
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
+		btnTendToFarmland.setToolTipText("Uses 1 action and");
 		btnTendToFarmland.setBounds(10, 11, 179, 51);
 		panelMisc.add(btnTendToFarmland);
 		

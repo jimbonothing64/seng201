@@ -16,6 +16,7 @@ public class Farm {
 	private int pettingBonus;
 	private int money = 100;
 	private int daysLeft;
+	private int totalDays;
 	
 	
 
@@ -24,6 +25,7 @@ public class Farm {
 		farmer = owner;
 		farmType = type;
 		daysLeft = days;
+		totalDays = days;
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
@@ -58,6 +60,11 @@ public class Farm {
 		}
 		
 		return cropInfo;
+	}
+	
+	// return farmer info
+	public String getFarmerInfo() {
+		return farmer.getName() + " (" + farmer.getAge() + ")";
 	}
 	//setter getters
 	

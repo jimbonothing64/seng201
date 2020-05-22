@@ -9,8 +9,8 @@ public class Main {
 	private int totalDays;
 	private Farm farm;
 	
-	public void launchSetupWindow() {
-		new FarmSetupWindow(this);
+	public void launchSetupWindow(Main outManager) {
+		FarmSetupWindow setupWindow = new FarmSetupWindow(outManager);
 	}
 	
 	public void setFarm(Farm newFarm) {
@@ -20,13 +20,8 @@ public class Main {
 	
 	public static void main(String[] args) {
 		Main manager = new Main();
-<<<<<<< HEAD
-		manager.launchSetupWindow();
-		//System.out.println(manager.farm.getMoney());
-=======
 		manager.launchSetupWindow(manager);
 		
->>>>>>> bb52fb0228a1f0bf73eb774654f08f186887de67
 		
 	}
 

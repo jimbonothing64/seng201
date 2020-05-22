@@ -38,16 +38,6 @@ public class FarmSetupWindow {
 	/**
 	 * Launch the application.
 	 */
-	
-	public FarmSetupWindow(Main inMain) {
-		manager = inMain;
-		initialize();
-		frmFarmSetup.setVisible(true);
-		
-	}
-	public FarmSetupWindow() {
-		initialize();
-	}
 	public static void main(String[] args) {
 	
 	}
@@ -56,6 +46,12 @@ public class FarmSetupWindow {
 	 * Create the application.
 	 * @wbp.parser.entryPoint
 	 */
+	public FarmSetupWindow(Main inMain) {
+		manager = inMain;
+		initialize();
+		frmFarmSetup.setVisible(true);
+		
+	}
 	
 	//Close setup window
 	public void closeWindow() {

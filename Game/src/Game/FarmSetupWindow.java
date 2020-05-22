@@ -92,7 +92,7 @@ public class FarmSetupWindow {
 		panelFarmerInfo.add(txtFarmerName);
 		txtFarmerName.setColumns(10);
 		
-		JLabel lblFarmerAge = new JLabel("Farmer's Age:");
+		JLabel lblFarmerAge = new JLabel("Farmer's Age");
 		lblFarmerAge.setBounds(370, 30, 81, 14);
 		panelFarmerInfo.add(lblFarmerAge);
 		

@@ -18,6 +18,7 @@ public class Farm {
 	private int currentDay;
 	private int totalDays;
 	private int actionPoints;
+	private int happyDecay;
 	
 	
 
@@ -27,6 +28,7 @@ public class Farm {
 		farmType = type;
 		totalDays = days;
 		currentDay = 0;
+		happyDecay = 1;
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
@@ -90,6 +92,11 @@ public class Farm {
 	public int getPettingBonus() {
 		return pettingBonus;
 	}
+	
+	public int getHappyDecay() {
+		return happyDecay;
+	}
+	
 	public void addAnimal(Animal animal) {
 		animals.add(animal);
 	}
@@ -136,6 +143,11 @@ public class Farm {
 		}
 	}
 	
+	public void tendFarm() {
+		actionPoints += 1;
+		happyDecay += 3;
+	}
+	
 	public int harvest() {
 		int total = 0;
 		for (Crop crop: crops) {
@@ -161,8 +173,17 @@ public class Farm {
 			earnings += animal.getDailyReward();
 		}
 		
+		if (happyDecay > 0) {
+			happyDecay -= 1;
+			} else {
+				for (Animal animal: animals) {
+					animal.setHappiness(animal.getHappiness() - 1);
+				}
+			}
+		
 		money += earnings;
 		currentDay += 1;
+		
 		actionPoints = 0;
 		return earnings;
 	}

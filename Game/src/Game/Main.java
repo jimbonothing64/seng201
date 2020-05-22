@@ -8,5 +8,16 @@ public class Main {
 	private int day;
 	private int totalDays;
 	private Farmer farmer;
+	
+	public void launchSetupWindow(Farm outFarm) {
+		FarmSetupWindow setupWindow = new FarmSetupWindow(outFarm);
+	}
+	
+	public static void main(String[] args) {
+		Farm farm = new Farm();
+		Main manager = new Main();
+		manager.launchSetupWindow(farm);
+		
+	}
 
 }

@@ -138,6 +138,7 @@ public class GameWindow {
 		panelMisc.setLayout(null);
 		
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
+		btnTendToFarmland.setToolTipText("Uses 1 action and");
 		btnTendToFarmland.setBounds(10, 11, 179, 51);
 		panelMisc.add(btnTendToFarmland);
 		

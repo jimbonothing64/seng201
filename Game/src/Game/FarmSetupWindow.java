@@ -58,6 +58,9 @@ public class FarmSetupWindow {
 		frmFarmSetup.dispose();
 	}
 	
+	public void finishedWindow() {
+		manager.closeSetupWindow(this);
+	}
 
 	/**
 	 * Initialize the contents of the frame.

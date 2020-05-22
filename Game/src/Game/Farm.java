@@ -51,6 +51,14 @@ public class Farm {
 			animals.get(i).feedItem(item);
 		}
 	}
+	
+	// pet all animals
+	public void petAnimals() {
+		for (int i = 0; i < animals.size(); i++) {
+			animals.get(i).pet(pettingBonus);
+		}
+	}
+	
 /*	public int harvest() {
 		int income = 0;
 		for (int i = 0; i < crops.size(); i++) {

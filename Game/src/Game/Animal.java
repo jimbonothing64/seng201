@@ -64,7 +64,7 @@ public class Animal {
 	}
 	
 	public String toString() {
-		return animalType + ": \n" + "HEALTH: " + health + "  HAPPINESS: " + happiness + "  DAILY REWARD: " + getDailyReward();
+		return animalType + ": " + " HEALTH:" + health + " HAPPINESS:" + happiness + " DAILY REWARD:" + getDailyReward();
 	}
 	
 	public void feedItem(AnimalItem item) {

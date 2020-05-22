@@ -130,6 +130,7 @@ public class Farm {
 	
 	// pet all animals
 	public void petAnimals() {
+		actionPoints += 1;
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).pet(pettingBonus);
 		}
@@ -151,6 +152,19 @@ public class Farm {
 		crops = updatedArray;
 		
 		return total;
+	}
+	
+	//give rewards for end of day
+	public int endDay() {
+		int earnings = 0;
+		for (Animal animal: animals) {
+			earnings += animal.getDailyReward();
+		}
+		
+		money += earnings;
+		currentDay += 1;
+		actionPoints = 0;
+		return earnings;
 	}
 	
 	public static void main(String[] args) {

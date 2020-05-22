@@ -11,6 +11,7 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -85,6 +86,12 @@ public class GameWindow {
 		panelLivestock.add(listLivestock);
 		
 		JButton btnPlayWithAnimals = new JButton("Play");
+		btnPlayWithAnimals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manager.getFarm().petAnimals();
+				updateFarmInfo();
+			}
+		});
 		btnPlayWithAnimals.setToolTipText("Uses 1 action point to increase happiness");
 		btnPlayWithAnimals.setBounds(196, 346, 181, 52);
 		panelLivestock.add(btnPlayWithAnimals);
@@ -157,11 +164,20 @@ public class GameWindow {
 		panelMisc.setLayout(null);
 		
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
-		btnTendToFarmland.setToolTipText("Uses 1 action and");
+		btnTendToFarmland.setToolTipText("Uses 1 action and slows down decay of animal happiness");
 		btnTendToFarmland.setBounds(10, 11, 179, 51);
 		panelMisc.add(btnTendToFarmland);
 		
 		JButton btnNextDay = new JButton("Next Day");
+		btnNextDay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int earnings = manager.getFarm().endDay();
+				updateFarmInfo();
+				if (earnings > 0) {
+				JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
+				}
+			}
+		});
 		btnNextDay.setBounds(595, 11, 179, 51);
 		panelMisc.add(btnNextDay);
 		

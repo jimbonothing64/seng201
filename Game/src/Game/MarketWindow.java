@@ -179,10 +179,6 @@ public class MarketWindow {
 		JButton purchase2 = new JButton("Purchase");
 		purchase2.setBounds(190, 141, 89, 23);
 		frame.getContentPane().add(purchase2);
-		
-		JList<String> list3 = new JList<String>();
-		list3.setBounds(330, 26, 111, 116);
-		frame.getContentPane().add(list3);
 		purchase2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String itemString = list2.getSelectedValue();
@@ -203,6 +199,86 @@ public class MarketWindow {
 			}
 			}
 			});
+		JList<String> list3 = new JList<String>();
+		list3.setBackground(Color.WHITE);
+		list3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		list3.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = new String[] {"Chicken     $3",
+					"Pig            $6","Cow          $9",};
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list3.setBounds(331, 24, 111, 116);
+		frame.getContentPane().add(list3);
 		
+		JButton purchase3 = new JButton("Purchase");
+		purchase3.setBounds(340, 141, 89, 23);
+		frame.getContentPane().add(purchase3);
+		
+		purchase3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String itemString = list3.getSelectedValue();
+				if(itemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				}
+				else {
+					int value = itemString.charAt(itemString.length()-1);
+					if (farm.getMoney() < value - '0') {
+						JOptionPane.showMessageDialog(null,"insufficient funds"); 
+				} 
+					else {
+						int num = itemString.charAt(itemString.length()-1) -'0';
+						farm.setMoney(farm.getMoney() - num);
+						addAnimal(farm, num);
+						moneyLabel.setText("money = " + farm.getMoney());
+				}
+			}
+			}
+			});
+		JList<String> list4 = new JList<String>();
+		list4.setBackground(Color.WHITE);
+		list4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		list4.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = new String[] {"hay              $3",
+					"grain            $5","health pellet  $7",};
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
+		list4.setBounds(483, 24, 111, 116);
+		frame.getContentPane().add(list4);
+		
+		JButton purchase4 = new JButton("Purchase");
+		purchase4.setBounds(493, 141, 89, 23);
+		frame.getContentPane().add(purchase4);
+		purchase4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String itemString = list4.getSelectedValue();
+				if(itemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				}
+				else {
+					int value = itemString.charAt(itemString.length()-1);
+					if (farm.getMoney() < value - '0') {
+						JOptionPane.showMessageDialog(null,"insufficient funds"); 
+				} 
+					else {
+						int num = itemString.charAt(itemString.length()-1) -'0';
+						farm.setMoney(farm.getMoney() - num);
+						addAnimalItem(farm, num);
+						moneyLabel.setText("money = " + farm.getMoney());
+				}
+			}
+			}
+			});
 	}
 }

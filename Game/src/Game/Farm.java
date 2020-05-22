@@ -15,6 +15,7 @@ public class Farm {
 	private ArrayList<CropItem> cropItems = new ArrayList<CropItem>();
 	private int pettingBonus;
 	private int money = 100;
+	private int daysLeft;
 	
 	
 	//temp fix later
@@ -22,9 +23,10 @@ public class Farm {
 		money = 200;
 	}
 	// sets farm bonuses based on farm type
-	public Farm(String type, Farmer owner) {
+	public Farm(String type, Farmer owner, int days) {
 		farmer = owner;
 		farmType = type;
+		daysLeft = days;
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {

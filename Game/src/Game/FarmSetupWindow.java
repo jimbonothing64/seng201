@@ -18,6 +18,8 @@ import java.awt.Color;
 import javax.swing.border.CompoundBorder;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FarmSetupWindow {
 
@@ -27,7 +29,11 @@ public class FarmSetupWindow {
 	private JTextField textFarmTypeInfo;
 	private JTextField textFarmName;
 	
+	private Main manager;
 	private Farm farm;
+	private int farmerAge;
+	private int gameLength;
+	private String farmType;
 
 	/**
 	 * Launch the application.
@@ -48,12 +54,18 @@ public class FarmSetupWindow {
 	/**
 	 * Create the application.
 	 */
-	public FarmSetupWindow(Farm incomingFarm) {
-		farm = incomingFarm;
+	public FarmSetupWindow(Main inMain) {
+		manager = inMain;
 		initialize();
 		frmFarmSetup.setVisible(true);
 		
 	}
+	
+	//Close setup window
+	public void closeWindow() {
+		frmFarmSetup.dispose();
+	}
+	
 
 	/**
 	 * Initialize the contents of the frame.
@@ -104,7 +116,8 @@ public class FarmSetupWindow {
 		JSlider sliderFarmerAge = new JSlider();
 		sliderFarmerAge.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent arg0) {
-				lblFarmerAgeDisplay.setText("(" + sliderFarmerAge.getValue() + " years)");
+				farmerAge = sliderFarmerAge.getValue();
+				lblFarmerAgeDisplay.setText("(" + farmerAge + " years)");
 			}
 		});
 		sliderFarmerAge.setSnapToTicks(true);
@@ -138,6 +151,13 @@ public class FarmSetupWindow {
 		panelFarmInfo.add(rdbtnSwissAlpsMeadow);
 		
 		JRadioButton rdbtnFixerUpper = new JRadioButton("Fixer-Upper");
+		rdbtnFixerUpper.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				if (rdbtnFixerUpper.isSelected()) {
+					farmType = rdbtnFixerUpper.getText();
+				}
+			}
+		});
 		FarmTypeGroup.add(rdbtnFixerUpper);
 		rdbtnFixerUpper.setBounds(95, 89, 161, 23);
 		panelFarmInfo.add(rdbtnFixerUpper);
@@ -184,7 +204,8 @@ public class FarmSetupWindow {
 		JSlider sliderDays = new JSlider();
 		sliderDays.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblYearsDisplay.setText("(" + sliderDays.getValue() + " days)");
+				gameLength = sliderDays.getValue();
+				lblYearsDisplay.setText("(" + gameLength + " days)");
 			}
 		});
 		sliderDays.setSnapToTicks(true);
@@ -203,8 +224,28 @@ public class FarmSetupWindow {
 		frmFarmSetup.getContentPane().add(btnStart);
 		
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				closeWindow();
+			}
+		});
 		btnQuit.setBackground(new Color(255, 0, 0));
 		btnQuit.setBounds(10, 323, 145, 23);
 		frmFarmSetup.getContentPane().add(btnQuit);
+	}
+	
+	public Farmer getFarmerConfig() {
+		String farmerName = txtFarmerName.getText();
+		return new Farmer(farmerName, farmerAge);
+	}
+	
+	public Farm getGameConfig() {	
+		Farm farmConfig = new Farm(farmType, getFarmerConfig(), gameLength);
+		return farmConfig;
+	}
+	
+	public void startGame() {
+		manager.farm = getGameConfig();
+		closeWindow();
 	}
 }

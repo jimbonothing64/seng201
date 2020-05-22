@@ -20,13 +20,7 @@ public class Farm {
 	private int currentDay;
 	private int totalDays;
 	private int actionPoints;
-	private int happyDecay;
-	
-/*	if(totalDays == currentDay) {
-		JOptionPane.showMessageDialog(null,"Congratulations! "
-				+ "you have finished the game with a total of $" + money);
-	}; */
-	
+	private int happyDecay;	
 	
 
 	// sets farm bonuses based on farm type

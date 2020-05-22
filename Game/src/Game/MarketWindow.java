@@ -20,8 +20,7 @@ import javax.swing.JButton;
 public class MarketWindow {
 
 	private JFrame frame;
-	private Farmer farmer = new Farmer("brown", 15);
-	private Farm farm = new Farm("asd", farmer, 5);
+	private Farm farm;
 	
 	private Main manager;
 

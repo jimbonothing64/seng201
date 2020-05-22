@@ -24,6 +24,7 @@ public class GameWindow {
 	private JLabel lblActions;
 	private JLabel lblMoney;
 	private JLabel lblFarmerInfo;
+	private Farm farm;
 	
 	
 	private Main manager;
@@ -54,6 +55,7 @@ public class GameWindow {
 	
 	public GameWindow(Main incomingManager) {
 		manager = incomingManager;
+		farm = manager.getFarm();
 		initialize();
 		frmFarmOwnerSimulator.setVisible(true);
 		updateFarmInfo();
@@ -96,8 +98,12 @@ public class GameWindow {
 		JButton btnPlayWithAnimals = new JButton("Play");
 		btnPlayWithAnimals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.getFarm().petAnimals();
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+				farm.petAnimals();
 				updateFarmInfo();
+			}
 			}
 		});
 		btnPlayWithAnimals.setToolTipText("Uses 1 action point to increase happiness");
@@ -108,6 +114,17 @@ public class GameWindow {
 		btnFeedAnimals.setToolTipText("Uses 1 action point to increase health");
 		btnFeedAnimals.setBounds(10, 346, 181, 52);
 		panelLivestock.add(btnFeedAnimals);
+		btnFeedAnimals.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+				//item = getselecteditem();
+				//farm.feedAnimals(item);
+				updateFarmInfo();
+				}
+			}
+		});
 		
 		JPanel panelCrops = new JPanel();
 		panelCrops.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -174,7 +191,7 @@ public class GameWindow {
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
 		btnTendToFarmland.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manager.getFarm().tendFarm();
+				farm.tendFarm();
 				updateFarmInfo();
 			}
 		});
@@ -185,13 +202,18 @@ public class GameWindow {
 		JButton btnNextDay = new JButton("Next Day");
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int earnings = manager.getFarm().endDay();
+				int earnings = farm.endDay();
 				updateFarmInfo();
 				if (earnings > 0) {
 					JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
 				}
-				if (manager.getFarm().getHappyDecay() == 0) {
+				if (farm.getHappyDecay() == 0) {
 					JOptionPane.showMessageDialog(null,"Your farm is in bad shape! Tend to it or your animals will become less happy");
+				}
+				
+				if(farm.getTotalDays() == farm.getCurrentDay()) {
+						JOptionPane.showMessageDialog(null,"Congratulations! "
+								+ "you have finished the game with a total of $" +farm.getMoney());
 				}
 			}
 		});
@@ -210,9 +232,9 @@ public class GameWindow {
 	
 	// update all labels presenting user with basic farm info
 	void updateFarmInfo() {
-		lblDaysLeft.setText("Day: " + manager.getFarm().getCurrentDay() + "/" + manager.getFarm().getTotalDays());
-		lblActions.setText("Actions: " + manager.getFarm().getActionPoints() + "/2");
-		lblMoney.setText("Money: $" + manager.getFarm().getMoney() );
-		lblFarmerInfo.setText(manager.getFarm().getFarmerInfo());
+		lblDaysLeft.setText("Day: " + farm.getCurrentDay() + "/" + farm.getTotalDays());
+		lblActions.setText("Actions: " + farm.getActionPoints() + "/2");
+		lblMoney.setText("Money: $" + farm.getMoney() );
+		lblFarmerInfo.setText(farm.getFarmerInfo());
 	}
 }

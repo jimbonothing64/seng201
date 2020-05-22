@@ -16,6 +16,11 @@ public class Farm {
 	private int pettingBonus;
 	private int money = 100;
 	
+	
+	//temp fix later
+	public Farm() {
+		money = 200;
+	}
 	// sets farm bonuses based on farm type
 	public Farm(String type, Farmer owner) {
 		farmer = owner;
@@ -144,5 +149,5 @@ public class Farm {
 	}
 
 
-	}
 }
+

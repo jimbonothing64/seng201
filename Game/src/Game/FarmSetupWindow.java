@@ -26,6 +26,8 @@ public class FarmSetupWindow {
 	private final ButtonGroup FarmTypeGroup = new ButtonGroup();
 	private JTextField textFarmTypeInfo;
 	private JTextField textFarmName;
+	
+	private Farm farm;
 
 	/**
 	 * Launch the application.
@@ -46,8 +48,11 @@ public class FarmSetupWindow {
 	/**
 	 * Create the application.
 	 */
-	public FarmSetupWindow() {
+	public FarmSetupWindow(Farm incomingFarm) {
+		farm = incomingFarm;
 		initialize();
+		frmFarmSetup.setVisible(true);
+		
 	}
 
 	/**

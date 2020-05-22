@@ -11,10 +11,11 @@ public class Farm {
 	private String farmType;
 	private ArrayList<Animal> animals = new ArrayList<Animal>();
 	private ArrayList<Crop> crops = new ArrayList<Crop>();
+	private ArrayList<AnimalItem> animalItems = new ArrayList<AnimalItem>();
+	private ArrayList<CropItem> cropItems = new ArrayList<CropItem>();
 	private int pettingBonus;
 	private int happinessBonus;
 	private int harvestTimeBonus;
-	
 	private int money;
 	
 	// sets farm bonuses based on farm type

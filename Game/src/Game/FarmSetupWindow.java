@@ -16,6 +16,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.border.CompoundBorder;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class FarmSetupWindow {
 
@@ -70,15 +72,19 @@ public class FarmSetupWindow {
 		frmFarmSetup.getContentPane().add(panelFarmerInfo);
 		panelFarmerInfo.setLayout(null);
 		
+		JLabel lblFarmerAgeDisplay = new JLabel("25");
+		lblFarmerAgeDisplay.setBounds(461, 30, 25, 14);
+		panelFarmerInfo.add(lblFarmerAgeDisplay);
+		
 		JLabel lblCustomizeFarmerHeading = new JLabel("Customize Your Farmer:");
 		lblCustomizeFarmerHeading.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCustomizeFarmerHeading.setBounds(10, 5, 676, 14);
 		lblCustomizeFarmerHeading.setFont(new Font("Tahoma", Font.BOLD, 11));
 		panelFarmerInfo.add(lblCustomizeFarmerHeading);
 		
-		JLabel lblNewLabel_1 = new JLabel("Farmer's Name");
-		lblNewLabel_1.setBounds(10, 31, 93, 14);
-		panelFarmerInfo.add(lblNewLabel_1);
+		JLabel lblFarmerName = new JLabel("Farmer's Name");
+		lblFarmerName.setBounds(10, 31, 93, 14);
+		panelFarmerInfo.add(lblFarmerName);
 		
 		txtFarmerName = new JTextField();
 		txtFarmerName.setText("Bob");
@@ -91,6 +97,11 @@ public class FarmSetupWindow {
 		panelFarmerInfo.add(lblFarmerAge);
 		
 		JSlider sliderFarmerAge = new JSlider();
+		sliderFarmerAge.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				lblFarmerAgeDisplay.setText("" + sliderFarmerAge.getValue());
+			}
+		});
 		sliderFarmerAge.setSnapToTicks(true);
 		sliderFarmerAge.setMajorTickSpacing(10);
 		sliderFarmerAge.setMinorTickSpacing(1);
@@ -100,10 +111,6 @@ public class FarmSetupWindow {
 		sliderFarmerAge.setMinimum(18);
 		sliderFarmerAge.setBounds(496, 31, 190, 14);
 		panelFarmerInfo.add(sliderFarmerAge);
-		
-		JLabel lblFarmerAgeDisplay = new JLabel("25");
-		lblFarmerAgeDisplay.setBounds(461, 30, 25, 14);
-		panelFarmerInfo.add(lblFarmerAgeDisplay);
 		
 		JPanel panelFarmInfo = new JPanel();
 		panelFarmInfo.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -118,17 +125,17 @@ public class FarmSetupWindow {
 		
 		JRadioButton rdbtnSwissAlpsMeadow = new JRadioButton("Swiss Alps Meadow");
 		FarmTypeGroup.add(rdbtnSwissAlpsMeadow);
-		rdbtnSwissAlpsMeadow.setBounds(95, 139, 131, 23);
+		rdbtnSwissAlpsMeadow.setBounds(95, 139, 161, 23);
 		panelFarmInfo.add(rdbtnSwissAlpsMeadow);
 		
 		JRadioButton rdbtnFixerUpper = new JRadioButton("Fixer-Upper");
 		FarmTypeGroup.add(rdbtnFixerUpper);
-		rdbtnFixerUpper.setBounds(95, 89, 131, 23);
+		rdbtnFixerUpper.setBounds(95, 89, 161, 23);
 		panelFarmInfo.add(rdbtnFixerUpper);
 		
 		JRadioButton rdbtnHumbleRanch = new JRadioButton("Humble Ranch");
 		FarmTypeGroup.add(rdbtnHumbleRanch);
-		rdbtnHumbleRanch.setBounds(95, 113, 109, 23);
+		rdbtnHumbleRanch.setBounds(95, 113, 161, 23);
 		panelFarmInfo.add(rdbtnHumbleRanch);
 		
 		JLabel lblFarmType = new JLabel("Farm Type");

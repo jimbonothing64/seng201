@@ -26,8 +26,8 @@ public class Crop {
 	public int getCost() {
 		return cost;
 	}
-	public String getName() {
-		return name;
+	public String toString() {
+		return name + ": Days until harvestble: " + harvestable + "  value: " + income;
 	}
 	public int getIncome() {
 		return income;

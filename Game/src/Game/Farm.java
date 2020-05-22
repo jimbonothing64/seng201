@@ -14,15 +14,18 @@ public class Farm {
 	private ArrayList<AnimalItem> animalItems = new ArrayList<AnimalItem>();
 	private ArrayList<CropItem> cropItems = new ArrayList<CropItem>();
 	private int pettingBonus;
-	private int happinessBonus;
 	private int harvestTimeBonus;
 	private int money;
 	
 	// sets farm bonuses based on farm type
 	public Farm(String type) {
 		farmType = type;
-		if (type == "1") {
-			//pass
+		if (type == "Volcanic Soil Plantation") {
+			harvestTimeBonus = 2;
+		} else if (type == "Swiss Alps Meadow") {
+			pettingBonus = 1;
+		} else if(type == "Fixer-Upper") {
+			money = 100;
 		}
 	}
 	//setter getters
@@ -39,6 +42,19 @@ public class Farm {
 		}
 		
 		return animalInfo;
+	}
+	
+	public String getCropInfo() {
+		String cropInfo = "Crop list:\n";
+		
+		if (crops.size() < 1) {
+			cropInfo = "You have no crops";
+		}
+		for (int i = 0; i < crops.size(); i++) {
+			cropInfo += crops.get(i).toString() + "\n";
+		}
+		
+		return cropInfo;
 	}
 	
 	public void setMoney(int amount) {
@@ -76,38 +92,39 @@ public class Farm {
 		}
 	}
 	
-	
-	
-/*	public int harvest() {
-		int income = 0;
-		for (int i = 0; i < crops.size(); i++) {
-			if (crops.get(i).getHarvestable() == 0) {
-				income += crops.get(i).getIncome();
-			}
-		}
-	} */
 	public int harvest() {
 		int total = 0;
 		for (Crop crop: crops) {
 			if(crop.getHarvestable() == 0) {
-				crops.remove(crop);
+				total += crop.getIncome();
 			}
 		}
+		ArrayList<Crop> updatedArray = new ArrayList<Crop>();
+		for (Crop crop: crops) {
+			if (crop.getHarvestable() != 0) {
+				updatedArray.add(crop);
+			}
+		}
+		crops = updatedArray;
+		
 		return total;
 	}
+	
 	public static void main(String[] args) {
 		Farm farm = new Farm("hhh");
 		Crop e = new Crop("ss");
+		Crop ee = new Crop("ss");
 		Cow a = new Cow();
 		Chicken b = new Chicken();
 		farm.addAnimal(a);
 		farm.addAnimal(a);
 		farm.addAnimal(b);
 		farm.addCrop(e);
-		e.mature(2);
+		e.mature(3);
+		farm.addCrop(ee);
 		farm.harvest();
-		System.out.println(e.getHarvestable());
-		System.out.println(farm.getAnimalInfo());
+		System.out.println(farm.getCropInfo());
+		//System.out.println(farm.getAnimalInfo());
 		
 
 	}

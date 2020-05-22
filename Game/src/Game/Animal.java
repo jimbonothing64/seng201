@@ -74,6 +74,7 @@ public class Animal {
 	public void feedItem(AnimalItem item) {
 		setHappiness(item.getHappiness() + happiness);
 		setHealth(item.getHealth() + health);
+		
 	}
 	
 	

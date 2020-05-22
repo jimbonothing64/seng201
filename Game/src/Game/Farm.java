@@ -14,18 +14,16 @@ public class Farm {
 	private ArrayList<AnimalItem> animalItems = new ArrayList<AnimalItem>();
 	private ArrayList<CropItem> cropItems = new ArrayList<CropItem>();
 	private int pettingBonus;
-	private int harvestTimeBonus;
-	private int money;
+	private int money = 100;
 	
 	// sets farm bonuses based on farm type
-	public Farm(String type) {
+	public Farm(String type, Farmer owner) {
+		farmer = owner;
 		farmType = type;
-		if (type == "Volcanic Soil Plantation") {
-			harvestTimeBonus = 2;
-		} else if (type == "Swiss Alps Meadow") {
+		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
-			money = 100;
+			money = 200;
 		}
 	}
 	
@@ -65,11 +63,17 @@ public class Farm {
 	public int getMoney() {
 		return money;
 	}
+	public int getPettingBonus() {
+		return pettingBonus;
+	}
 	public void addAnimal(Animal animal) {
 		animals.add(animal);
 	}
 	public void addCrop(Crop crop) {
 		crops.add(crop);
+		if (farmType == "Volcanic Soil Plantation") {
+			crop.mature(1);
+		}
 	}
 	//matures each crop by 1 day at the end of each day
 	public void growCrops(int day) {
@@ -77,6 +81,13 @@ public class Farm {
 			crops.get(i).mature(day);
 		}
 		
+	}
+	// consumes item by removing it from the inventory
+	public void consumeAnimalItem(AnimalItem item) {
+		animalItems.remove(item);
+	}
+	public void consumeCropItem(CropItem item) {
+		cropItems.remove(item);
 	}
 	
 	
@@ -113,7 +124,8 @@ public class Farm {
 	}
 	
 	public static void main(String[] args) {
-		Farm farm = new Farm("hhh");
+		Farmer brown = new Farmer("brown", 26);
+		Farm farm = new Farm("Volcanic Soil Plantation", brown);
 		Crop e = new Crop("lettuce");
 		Crop ee = new Crop("pumpkin");
 		Cow a = new Cow();
@@ -124,10 +136,13 @@ public class Farm {
 		farm.addCrop(e);
 		farm.addCrop(ee);
 		farm.growCrops(3);
-		farm.harvest();
+		//farm.harvest();
 		System.out.println(farm.getCropInfo());
 		//System.out.println(farm.getAnimalInfo());
 		
+
+	}
+
 
 	}
 }

@@ -10,6 +10,10 @@ public class Farm {
 	private String farmType;
 	private ArrayList<Animal> animals = new ArrayList<Animal>();
 	private ArrayList<Crop> crops = new ArrayList<Crop>();
+	private int pettingBonus;
+	private int happinessBonus;
+	private int harvestTimeBonus;
+	
 	private int money;
 	
 	// sets farm bonuses based on farm type
@@ -26,11 +30,11 @@ public class Farm {
 	public int getMoney() {
 		return money;
 	}
-	public void addAnimal(Animal e) {
-		animals.add(e);
+	public void addAnimal(Animal animal) {
+		animals.add(animal);
 	}
-	public void addCrop(Crop e) {
-		crops.add(e);
+	public void addCrop(Crop crop) {
+		crops.add(crop);
 	}
 	//matures each crop by 1 day at the end of each day
 	public void growCrops() {

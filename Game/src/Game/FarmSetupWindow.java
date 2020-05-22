@@ -15,6 +15,7 @@ import javax.swing.JRadioButtonMenuItem;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.Color;
+import javax.swing.border.CompoundBorder;
 
 public class FarmSetupWindow {
 
@@ -64,6 +65,7 @@ public class FarmSetupWindow {
 		frmFarmSetup.getContentPane().add(lblWelcome);
 		
 		JPanel panelFarmerInfo = new JPanel();
+		panelFarmerInfo.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelFarmerInfo.setBounds(10, 36, 696, 61);
 		frmFarmSetup.getContentPane().add(panelFarmerInfo);
 		panelFarmerInfo.setLayout(null);
@@ -85,17 +87,18 @@ public class FarmSetupWindow {
 		txtFarmerName.setColumns(10);
 		
 		JLabel lblFarmerAge = new JLabel("Farmer's Age:");
-		lblFarmerAge.setBounds(393, 30, 70, 14);
+		lblFarmerAge.setBounds(370, 30, 81, 14);
 		panelFarmerInfo.add(lblFarmerAge);
 		
 		JSlider sliderFarmerAge = new JSlider();
+		sliderFarmerAge.setSnapToTicks(true);
 		sliderFarmerAge.setMajorTickSpacing(10);
-		sliderFarmerAge.setMinorTickSpacing(5);
+		sliderFarmerAge.setMinorTickSpacing(1);
 		sliderFarmerAge.setPaintTicks(true);
 		sliderFarmerAge.setValue(25);
 		sliderFarmerAge.setMaximum(95);
 		sliderFarmerAge.setMinimum(18);
-		sliderFarmerAge.setBounds(496, 31, 200, 14);
+		sliderFarmerAge.setBounds(496, 31, 190, 14);
 		panelFarmerInfo.add(sliderFarmerAge);
 		
 		JLabel lblFarmerAgeDisplay = new JLabel("25");
@@ -103,6 +106,7 @@ public class FarmSetupWindow {
 		panelFarmerInfo.add(lblFarmerAgeDisplay);
 		
 		JPanel panelFarmInfo = new JPanel();
+		panelFarmInfo.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelFarmInfo.setBounds(10, 108, 696, 204);
 		frmFarmSetup.getContentPane().add(panelFarmInfo);
 		panelFarmInfo.setLayout(null);
@@ -158,17 +162,18 @@ public class FarmSetupWindow {
 		textFarmName.setColumns(10);
 		
 		JLabel lblGameLength = new JLabel("Game Length");
-		lblGameLength.setBounds(274, 36, 109, 14);
+		lblGameLength.setBounds(274, 36, 75, 14);
 		panelFarmInfo.add(lblGameLength);
 		
 		JSlider slider = new JSlider();
+		slider.setSnapToTicks(true);
+		slider.setValue(7);
 		slider.setPaintLabels(true);
 		slider.setPaintTicks(true);
-		slider.setSnapToTicks(true);
 		slider.setMinorTickSpacing(1);
 		slider.setMinimum(5);
 		slider.setMaximum(10);
-		slider.setBounds(348, 31, 338, 26);
+		slider.setBounds(355, 31, 331, 26);
 		panelFarmInfo.add(slider);
 		
 		JButton btnStart = new JButton("Start Adventure!");

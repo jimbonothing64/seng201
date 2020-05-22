@@ -15,8 +15,9 @@ public class Farm {
 	private ArrayList<CropItem> cropItems = new ArrayList<CropItem>();
 	private int pettingBonus;
 	private int money = 100;
-	private int daysLeft;
+	private int currentDay;
 	private int totalDays;
+	private int actionPoints;
 	
 	
 
@@ -24,8 +25,8 @@ public class Farm {
 	public Farm(String type, Farmer owner, int days) {
 		farmer = owner;
 		farmType = type;
-		daysLeft = days;
 		totalDays = days;
+		currentDay = 0;
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
@@ -65,6 +66,18 @@ public class Farm {
 	// return farmer info
 	public String getFarmerInfo() {
 		return farmer.getName() + " (" + farmer.getAge() + ")";
+	}
+	
+	public int getCurrentDay() {
+		return currentDay;
+	}
+	
+	public int getTotalDays() {
+		return totalDays;
+	}
+	
+	public int getActionPoints() {
+		return actionPoints;
 	}
 	//setter getters
 	

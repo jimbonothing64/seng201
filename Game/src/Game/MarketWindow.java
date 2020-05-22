@@ -46,10 +46,44 @@ public class MarketWindow {
 			Crop plant = new Crop("melon");
 			farm.addCrop(plant);
 		}
-		
-		
-		
-		
+	}
+	public void addCropItem(Farm farm, int amount) {
+		if (amount == 2) {
+			CropItem item = new CropItem("fertiliser");
+			farm.addCropItem(item);
+		} else if (amount == 3) {
+			CropItem item = new CropItem("compost");
+			farm.addCropItem(item);
+		} else if (amount == 4) {
+			CropItem item = new CropItem("rootblast");
+			farm.addCropItem(item);
+		}
+	}
+	
+	public void addAnimalItem(Farm farm, int amount) {
+		if (amount == 2) {
+			CropItem item = new CropItem("fertiliser");
+			farm.addCropItem(item);
+		} else if (amount == 3) {
+			CropItem item = new CropItem("compost");
+			farm.addCropItem(item);
+		} else if (amount == 4) {
+			CropItem item = new CropItem("rootblast");
+			farm.addCropItem(item);
+		}
+	}
+	
+	public void addAnimal(Farm farm, int amount) {
+		if (amount == 3) {
+			Animal animal = new Chicken();
+			farm.addAnimal(animal);
+		} else if (amount == 7) {
+			Animal animal = new Pig();
+			farm.addAnimal(animal);
+		} else if (amount == 9) {
+			Animal animal = new Cow();
+			farm.addAnimal(animal);
+		}
 	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -159,7 +193,7 @@ public class MarketWindow {
 					else {
 						int num = itemString.charAt(itemString.length()-1) -'0';
 						farm.setMoney(farm.getMoney() - num);
-						//addItem(farm, num);
+						addCropItem(farm, num);
 						moneyLabel.setText("money = " + farm.getMoney());
 				}
 			}

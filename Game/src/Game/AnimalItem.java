@@ -14,21 +14,17 @@ public class AnimalItem {
 	public AnimalItem(String type) {
 		name = type;
 		
-		if (type == "1") {
-			cost = 1;
-			health = 1;
-			happiness = 1;
-		} else if (type == "4") {
-			cost = 1;
-			health = 1;
-			happiness = 1;
-		} else if (type == "2") {
-			cost = 1;
-			health = 1;
-			happiness = 1;
-		} else if (type == "3") {
-			cost = 1;
-			health = 1;
+		if (type == "hay") {
+			cost = 3;
+			health = 2;
+			happiness = 0;
+		} else if (type == "health pellets") {
+			cost = 7;
+			health = 4;
+			happiness = 2;
+		} else if (type == "grain") {
+			cost = 5;
+			health = 3;
 			happiness = 1;
 		}
 	}

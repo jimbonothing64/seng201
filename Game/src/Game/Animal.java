@@ -1,4 +1,8 @@
 package Game;
+/*
+ * Class for animals
+ * 
+ */
 
 public class Animal {
 	private String animalType;

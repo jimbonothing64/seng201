@@ -7,6 +7,7 @@ package Game;
 import java.util.ArrayList;
 
 public class Farm {
+	private Farmer farmer;
 	private String farmType;
 	private ArrayList<Animal> animals = new ArrayList<Animal>();
 	private ArrayList<Crop> crops = new ArrayList<Crop>();
@@ -24,6 +25,21 @@ public class Farm {
 		}
 	}
 	//setter getters
+	
+	public String getAnimalInfo () {
+		String animalInfo = "Animal List:\n";
+		
+		if (animals.size() < 1) {
+			animalInfo = "You have no animals";
+		}
+		
+		for (int i = 0; i < animals.size(); i++) {
+			animalInfo += animals.get(i).toString() + "\n";
+		}
+		
+		return animalInfo;
+	}
+	
 	public void setMoney(int amount) {
 		money = amount;
 	}
@@ -59,6 +75,8 @@ public class Farm {
 		}
 	}
 	
+	
+	
 /*	public int harvest() {
 		int income = 0;
 		for (int i = 0; i < crops.size(); i++) {
@@ -79,12 +97,16 @@ public class Farm {
 	public static void main(String[] args) {
 		Farm farm = new Farm("hhh");
 		Crop e = new Crop("ss");
-		//Cow a = new Cow();
-		//farm.addAnimal(a);
+		Cow a = new Cow();
+		Chicken b = new Chicken();
+		farm.addAnimal(a);
+		farm.addAnimal(a);
+		farm.addAnimal(b);
 		farm.addCrop(e);
 		e.mature(2);
 		farm.harvest();
 		System.out.println(e.getHarvestable());
+		System.out.println(farm.getAnimalInfo());
 		
 
 	}

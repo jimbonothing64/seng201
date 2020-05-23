@@ -27,9 +27,11 @@ public class GameWindow {
 	private JLabel lblMoney;
 	private JLabel lblFarmerInfo;
 	private Farm farm;
-	private ArrayList<String> animals = new ArrayList<String>();
+	private String[] animals = new String[20];
+	private String[] crops = new String[20];
 	private Main manager;
 	private JList<String> listLivestock;
+	private JList<String> listCrops;
 	
 
 	/**
@@ -70,12 +72,19 @@ public class GameWindow {
 	public void finishedWindow() {
 		manager.closeGameWindow(this);
 	}
-	// returns a list of animal descriptions to show in game panel
-	public ArrayList<String> animalList() {
+	// returns a list of animal / crop descriptions to show in game panel
+	public String[] animalList() {
 		for (int i = 0; i < farm.getAnimals().size(); i++) {
-			animals.add(farm.getAnimals().get(i).toString());
+			animals[i] = farm.getAnimals().get(i).toString();
 		}
 		return animals;
+	}
+	
+	public String[] cropList() {
+		for (int i=0; i < farm.getCrops().size(); i++) {
+			crops[i] = farm.getCrops().get(i).toString();
+		}
+		return crops;
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -103,12 +112,12 @@ public class GameWindow {
 		listLivestock.setBounds(10, 36, 367, 299);
 		listLivestock.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			ArrayList<String> values = animalList();
+			String[] values = animalList();
 			public int getSize() {
-				return values.size();
+				return values.length;
 			}
 			public String getElementAt(int index) {
-				return values.get(index);
+				return values[index];
 			}
 		});
 		panelLivestock.add(listLivestock);
@@ -121,6 +130,7 @@ public class GameWindow {
 					JOptionPane.showMessageDialog(null,"no action points left");
 				} else {
 				farm.petAnimals();
+				listLivestock.setListData(animalList());
 				updateFarmInfo();
 			}
 			}
@@ -140,6 +150,7 @@ public class GameWindow {
 				} else {
 				//item = getselecteditem();
 				//farm.feedAnimals(item);
+				listLivestock.setListData(animalList());
 				updateFarmInfo();
 				}
 			}
@@ -156,9 +167,19 @@ public class GameWindow {
 		lblCrops.setBounds(10, 11, 367, 14);
 		panelCrops.add(lblCrops);
 		
-		JList listCrops = new JList();
+		listCrops = new JList<String>();
 		listCrops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listCrops.setBounds(10, 36, 367, 299);
+		listCrops.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = cropList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 		panelCrops.add(listCrops);
 		
 		JButton btnWater = new JButton("Water (One Veriety)");
@@ -223,7 +244,8 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				int earnings = farm.endDay();
 				updateFarmInfo();
-				//listLivestock.set
+				listLivestock.setListData(animalList());
+				listCrops.setListData(cropList());
 				if (earnings > 0) {
 					JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
 				}
@@ -236,8 +258,6 @@ public class GameWindow {
 								+ "you have finished the game with a total of $" +farm.getMoney());
 				}
 				
-				//listLivestock.setListData(animalList());
-				listLivestock.updateUI();
 			}
 		});
 		btnNextDay.setBounds(595, 11, 179, 51);

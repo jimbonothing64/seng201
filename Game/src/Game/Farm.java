@@ -161,6 +161,7 @@ public class Farm {
 	}
 	
 	public int harvest() {
+		actionPoints += 1;
 		int total = 0;
 		for (Crop crop: crops) {
 			if(crop.getHarvestable() == 0) {
@@ -181,6 +182,7 @@ public class Farm {
 	//give rewards for end of day
 	public int endDay() {
 		int earnings = 0;
+		growCrops(1);
 		for (Animal animal: animals) {
 			earnings += animal.getDailyReward();
 		}

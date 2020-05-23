@@ -84,12 +84,14 @@ public class Animal {
 	
 	
 	public static void main(String[] args) {
-		Animal animal = new Pig();
+		/*Animal animal = new Pig();
 		Animal cow = new Cow();
 		Animal chicken = new Chicken();
 		System.out.println(animal);
 		System.out.println(cow);
-		System.out.println(chicken);
+		System.out.println(chicken); */
+		String[] s = new String[100];
+		System.out.println(s[2]);
 		
 	}
 

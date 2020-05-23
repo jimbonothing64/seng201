@@ -21,7 +21,7 @@ public class Crop {
 			cost = 6;
 			harvestable = 3;
 			income = 10;
-	    } else if (type == "carrot ") {
+	    } else if (type == "carrot") {
 	    	cost = 5;
 			harvestable = 4;
 			income = 11;

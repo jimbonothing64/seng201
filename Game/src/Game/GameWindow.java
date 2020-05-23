@@ -139,6 +139,8 @@ public class GameWindow {
 		} else {
 			cropItem = new CropItem("compost");
 		}
+		
+		farm.
 	}
 	
 	/**

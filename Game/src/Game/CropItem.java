@@ -36,4 +36,7 @@ public class CropItem {
 	 public int getValue() {
 		 return value;
 	 }
+	 public String toString() {
+		 return name + ":  reduce harvest time by " + value + " days";
+	 }
 }

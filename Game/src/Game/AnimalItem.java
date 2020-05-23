@@ -43,5 +43,8 @@ public class AnimalItem {
 	public int getHealth() {
 		return health;
 	}
+	public String toString() {
+		return name + ":  restores " + health + " and " + happiness + " happiness"; 
+	}
 }
 

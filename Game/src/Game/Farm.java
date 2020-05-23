@@ -148,10 +148,21 @@ public class Farm {
 	}
 	// consumes item by removing it from the inventory
 	public void consumeAnimalItem(AnimalItem item) {
-		animalItems.remove(item);
+		for (AnimalItem animalItem : animalItems) {
+			if (animalItem.getName() == item.getName()) {
+				animalItems.remove(animalItem);
+				break;
+			}
+		}
 	}
+	
 	public void consumeCropItem(CropItem item) {
-		cropItems.remove(item);
+		for (CropItem cropItem : cropItems) {
+			if (cropItem.getName() == item.getName()) {
+				cropItems.remove(cropItem);
+				break;
+			}
+		}
 	}
 	
 	

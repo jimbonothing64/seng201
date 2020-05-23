@@ -32,6 +32,7 @@ public class GameWindow {
 	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
+	private JList<String> listCropsCropItem;
 	private JPanel panelFeedLivestock;
 	private JPanel panelLivestock;
 	private JPanel panelCropItems;
@@ -135,9 +136,19 @@ public class GameWindow {
 		labelCropItems.setBounds(10, 11, 367, 14);
 		panelCropItems.add(labelCropItems);
 		
-		JList<String> listCropsCropItem = new JList<String>();
+		listCropsCropItem = new JList<String>();
 		listCropsCropItem.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listCropsCropItem.setBounds(10, 201, 367, 134);
+		listCropsCropItem.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = cropList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 		panelCropItems.add(listCropsCropItem);
 		
 		JLabel lblCropsCropItems = new JLabel("Select Crop for Item");

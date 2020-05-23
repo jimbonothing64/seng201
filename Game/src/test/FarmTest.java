@@ -64,7 +64,7 @@ class FarmTest {
 		testFarm = new Farm("Fixer-Upper",brown,5);
 		assertEquals(testFarm.getMoney(), 200);
 		assertEquals(testFarm.getPettingBonus(), 0);
-		testFarm = new
+		//testFarm = new
 	}
 
 }

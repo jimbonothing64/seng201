@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.JPanel;
@@ -241,7 +243,14 @@ public class FarmSetupWindow {
 		JButton btnStart = new JButton("Start Adventure!");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String farmerName = txtFarmerName.getText();
+				if (!(farmerName.matches("[a-zA-Z ]+"))) {
+					JOptionPane.showMessageDialog(null,"Farmer's Name must only contain letters");
+				} else if (farmerName.length() < 3 || farmerName.length() > 15) {
+					JOptionPane.showMessageDialog(null,"Farmer's Name must be between 3-15 characters");
+				} else {
 				startGame();
+				}
 			}
 		});
 		btnStart.setBackground(new Color(51, 204, 0));

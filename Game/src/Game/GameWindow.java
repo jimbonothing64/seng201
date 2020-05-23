@@ -208,7 +208,7 @@ public class GameWindow {
 				if ((selectedCrop == null) || (selectedCropItem == null)) {
 					JOptionPane.showMessageDialog(null,"please select both an item and a crop veriety to use it on.");
 				} else {
-					useCropItem(selectedCrop, selectedCropItem);
+					useCropItem(selectedCropItem, selectedCrop);
 					listCrops.setListData(cropList());
 					panelCropItems.setVisible(false);
 					panelCrops.setVisible(true);

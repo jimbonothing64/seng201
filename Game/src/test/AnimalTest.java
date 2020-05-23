@@ -70,6 +70,7 @@ class AnimalTest {
 	void feedTest() {
 		AnimalItem food = new AnimalItem("health pellets");
 		farm.addAnimalItem(food);
+		assertEquals(farm.getAnimalItems().size(), 1);
 		int chickenhappiness = farm.getAnimals().get(2).getHappiness();
 		int chickenhealth = farm.getAnimals().get(2).getHealth();
 		farm.feedAnimals(food);
@@ -77,6 +78,7 @@ class AnimalTest {
 		int currenthealth = farm.getAnimals().get(2).getHealth();
 		assertEquals(chickenhappiness + food.getHappiness(), currenthappiness);
 		assertEquals(chickenhealth + food.getHealth(), currenthealth);
+		assertEquals(farm.getAnimalItems().size(), 0);
 	}
 
 }

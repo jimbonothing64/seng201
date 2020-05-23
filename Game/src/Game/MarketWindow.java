@@ -63,14 +63,14 @@ public class MarketWindow {
 	
 	public void addAnimalItem(Farm farm, int amount) {
 		if (amount == 2) {
-			CropItem item = new CropItem("hay");
-			farm.addCropItem(item);
+			AnimalItem item = new AnimalItem("hay");
+			farm.addAnimalItem(item);
 		} else if (amount == 5) {
-			CropItem item = new CropItem("grain");
-			farm.addCropItem(item);
+			AnimalItem item = new AnimalItem("grain");
+			farm.addAnimalItem(item);
 		} else if (amount == 7) {
-			CropItem item = new CropItem("health pellets");
-			farm.addCropItem(item);
+			AnimalItem item = new AnimalItem("health pellets");
+			farm.addAnimalItem(item);
 		}
 	}
 	

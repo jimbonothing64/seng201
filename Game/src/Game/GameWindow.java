@@ -102,7 +102,6 @@ public class GameWindow {
 		panelLivestock.setBounds(11, 54, 387, 409);
 		frmFarmOwnerSimulator.getContentPane().add(panelLivestock);
 		panelLivestock.setLayout(null);
-		panelLivestock.setVisible(false);
 		
 		JLabel lblLivestock = new JLabel("Livestock");
 		lblLivestock.setHorizontalAlignment(SwingConstants.CENTER);
@@ -214,9 +213,6 @@ public class GameWindow {
 		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
 		btnUseCropItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!farm.actionValid()) {
-					JOptionPane.showMessageDialog(null,"no action points left");
-				}
 			}
 		});
 		btnUseCropItem.setBounds(196, 346, 181, 52);

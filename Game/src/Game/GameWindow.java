@@ -130,17 +130,33 @@ public class GameWindow {
 		farm.consumeAnimalItem(animalItem);
 	}
 	
-	public void useCropItem(String inString) {
+	public void useCropItem(String inStringCropItem, String inStringCrop) {
 		CropItem cropItem;
-		if (inString.contains("fertiliser")) {
+		Crop crop;
+		if (inStringCropItem.contains("fertiliser")) {
 			cropItem = new CropItem("fertiliser");
-		} else if (inString.contains("rootblast")) {
+		} else if (inStringCropItem.contains("rootblast")) {
 			cropItem = new CropItem("rootblast");
 		} else {
 			cropItem = new CropItem("compost");
 		}
 		
-		farm.
+		if (inStringCrop.contains("potato")) {
+			crop = new Crop("potato");
+		} else if (inStringCrop.contains("wheat")) {
+			crop = new Crop("wheat");
+		} else if (inStringCrop.contains("carrot")) {
+			crop = new Crop("carrot");
+		} else if (inStringCrop.contains("pumpkin")) {
+			crop = new Crop("pumpkin");
+		} else if (inStringCrop.contains("melon")) {
+			crop = new Crop("melon");		
+		} else  {
+			crop = new Crop("lettuce");
+		}
+		
+		farm.useCropItem(crop, cropItem);
+		farm.consumeCropItem(cropItem);
 	}
 	
 	/**
@@ -182,8 +198,16 @@ public class GameWindow {
 		JButton buttonUseCropItem = new JButton("Use Crop Item (Confirm)");
 		buttonUseCropItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+				String selectedCrop = listCropsCropItem.getSelectedValue();
+				String selectedCropItem = listCropItems.getSelectedValue();
+				if ((selectedCrop == null) || (selectedCropItem == null)) {
+					JOptionPane.showMessageDialog(null,"please select both an item and a crop veriety to use it on.");
+				} else {
+					useCropItem(selectedCrop, selectedCropItem);
+					listCropItems.setListData(cropItemList());
+					panelCropItems.setVisible(false);
+					panelCrops.setVisible(true);
+				}
 			}
 		});
 		buttonUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");

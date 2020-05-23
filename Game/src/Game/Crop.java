@@ -41,6 +41,10 @@ public class Crop {
     }
 	
 	//getter and setter methods
+	public String getName() {
+		return name;
+	}
+	
 	public int getHarvestable() {
 		return harvestable;
 	}
@@ -58,6 +62,14 @@ public class Crop {
 	public void mature(int i) {
 		harvestable -= i;
 		if (harvestable < 0) { // sets to 0 if negative
+			harvestable = 0;
+		}
+	}
+	
+	public void useItem(CropItem item) {
+		if (harvestable - item.getGrowth() > 0) {
+			harvestable -= item.getGrowth();
+		} else {
 			harvestable = 0;
 		}
 	}

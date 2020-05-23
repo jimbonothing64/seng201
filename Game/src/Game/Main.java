@@ -43,9 +43,6 @@ public class Main {
 		launchGameWindow();
 	}
 	
-
-	
-	
 	public static void main(String[] args) {
 		Main manager = new Main();
 		manager.launchSetupWindow(manager);

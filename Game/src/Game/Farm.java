@@ -127,8 +127,14 @@ public class Farm {
 	public ArrayList<Animal> getAnimals() {
 		return animals;
 	}
+	public ArrayList<AnimalItem> getAnimalItems() {
+		return animalItems;
+	}
 	public ArrayList<Crop> getCrops() {
 		return crops;
+	}
+	public ArrayList<CropItem> getCropItems() {
+		return cropItems;
 	}
 	public int getMaxCrops() {
 		return maxCrops;

@@ -1,0 +1,60 @@
+package test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import Game.Crop;
+import Game.Farm;
+import Game.Farmer;
+
+class CropTest {
+	private Farm farm;
+	@BeforeEach
+	void init() {
+		Crop carrot = new Crop("carrot");
+		Crop melon = new Crop("melon");
+		Crop pumpkin = new Crop("pumpkin");
+		Crop wheat = new Crop("wheat");
+		Crop potato = new Crop("potato");
+		Crop lettuce = new Crop("lettuce");
+		Farmer farmer = new Farmer("brown", 18);
+		farm = new Farm("Volcanic Soil Plantation", farmer, 8);
+		farm.addCrop(carrot);
+		farm.addCrop(melon);
+		farm.addCrop(pumpkin);
+		farm.addCrop(wheat);
+		farm.addCrop(potato);
+		farm.addCrop(lettuce);
+	}
+
+	@Test
+	void cropListTest() {
+		assertEquals(6, farm.getCrops().size());
+	}
+	@Test
+	void matureTest() {
+		Crop carrot = farm.getCrops().get(0);
+		assertEquals(carrot.toString(),"carrot (Days until harvestble: 3  value: 11)");
+		carrot.mature(1);
+		assertEquals(farm.getCrops().get(0).getHarvestable(), 2);
+		
+	}
+	@Test 
+	void harvestTest() {
+		//also tests action point use and harvested money
+		Crop pumpkin = farm.getCrops().get(2);
+		assertEquals(pumpkin.getCost(), 4);
+		assertEquals(farm.harvest(), 0);
+		pumpkin.mature(7);
+		assertEquals(pumpkin.getHarvestable(), 0);
+		assertEquals(farm.getActionPoints(), 0);
+		assertEquals(farm.harvest(), 20);
+		assertEquals(farm.getActionPoints(), 1);
+		assertEquals(farm.getMoney(), 120);
+		assertEquals(farm.getCrops().size(), 5);
+	}
+
+}

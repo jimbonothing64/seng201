@@ -97,6 +97,33 @@ public class GameWindow {
 		frmFarmOwnerSimulator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFarmOwnerSimulator.getContentPane().setLayout(null);
 		
+		JPanel panelFeedLiveStock = new JPanel();
+		panelFeedLiveStock.setLayout(null);
+		panelFeedLiveStock.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelFeedLiveStock.setBounds(11, 54, 387, 409);
+		frmFarmOwnerSimulator.getContentPane().add(panelFeedLiveStock);
+		panelFeedLiveStock.setVisible(false);
+		
+		JLabel label = new JLabel("Livestock Feeding Inventory");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setBounds(10, 11, 367, 14);
+		panelFeedLiveStock.add(label);
+		
+		JList<String> listFeedingList = new JList<String>();
+		listFeedingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listFeedingList.setBounds(10, 36, 367, 299);
+		panelFeedLiveStock.add(listFeedingList);
+		
+		JButton buttonUseFood = new JButton("Confirm (Use Item)");
+		buttonUseFood.setToolTipText("Uses 1 action point to increase happiness");
+		buttonUseFood.setBounds(196, 346, 181, 52);
+		panelFeedLiveStock.add(buttonUseFood);
+		
+		JButton buttonLivestockReturn = new JButton("Back");
+		buttonLivestockReturn.setToolTipText("Uses 1 action point to increase health");
+		buttonLivestockReturn.setBounds(10, 346, 181, 52);
+		panelFeedLiveStock.add(buttonLivestockReturn);
+		
 		JPanel panelLivestock = new JPanel();
 		panelLivestock.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelLivestock.setBounds(11, 54, 387, 409);

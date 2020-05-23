@@ -101,6 +101,7 @@ public class MarketWindow {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public MarketWindow() {
 		

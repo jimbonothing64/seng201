@@ -74,6 +74,7 @@ class AnimalTest {
 		int chickenhappiness = farm.getAnimals().get(2).getHappiness();
 		int chickenhealth = farm.getAnimals().get(2).getHealth();
 		farm.feedAnimals(food);
+		farm.consumeAnimalItem(food);
 		int currenthappiness = farm.getAnimals().get(2).getHappiness();
 		int currenthealth = farm.getAnimals().get(2).getHealth();
 		assertEquals(chickenhappiness + food.getHappiness(), currenthappiness);

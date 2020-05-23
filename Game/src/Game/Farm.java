@@ -171,7 +171,6 @@ public class Farm {
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).feedItem(item);
 		}
-		consumeAnimalItem(item);
 	}
 	
 	// pet all animals

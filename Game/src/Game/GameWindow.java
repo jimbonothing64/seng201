@@ -32,11 +32,13 @@ public class GameWindow {
 	private String[] animals = new String[50];
 	private String[] crops = new String[50];
 	private String[] cropItems = new String[50];
+	private String[] animalItems = new String[50];
 	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
 	private JList<String> listCropsCropItem;
 	private JList<String> listCropItems;
+	private JList<String> listFeedingList;
 	private JPanel panelFeedLivestock;
 	private JPanel panelLivestock;
 	private JPanel panelCropItems;
@@ -104,6 +106,14 @@ public class GameWindow {
 			cropItems[i] = farm.getCropItems().get(i).toString();
 		}
 		return cropItems;
+	}
+	
+	public String[] animalItemList() {
+		animalItems = new String[50];
+		for (int i = 0; i < farm.getAnimalItems().size(); i++) {
+			animalItems[i] = farm.getAnimalItems().get(i).toString();
+		}
+		return animalItems;
 	}
 	/**
 	 * Initialize the contents of the frame.
@@ -195,9 +205,19 @@ public class GameWindow {
 		labelLivestockInventory.setBounds(10, 11, 367, 14);
 		panelFeedLivestock.add(labelLivestockInventory);
 		
-		JList<String> listFeedingList = new JList<String>();
+		listFeedingList = new JList<String>();
 		listFeedingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFeedingList.setBounds(10, 36, 367, 299);
+		listFeedingList.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = animalItemList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 		panelFeedLivestock.add(listFeedingList);
 		
 		JButton buttonUseFood = new JButton("Confirm (Use Item)");

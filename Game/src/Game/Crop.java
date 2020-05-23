@@ -48,7 +48,7 @@ public class Crop {
 		return cost;
 	}
 	public String toString() {
-		return name + ": Days until harvestble: " + harvestable + "  value: " + income;
+		return name + " (Days until harvestble: " + harvestable + "  value: " + income + ")";
 	}
 	public int getIncome() {
 		return income;

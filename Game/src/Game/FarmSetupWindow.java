@@ -35,16 +35,12 @@ public class FarmSetupWindow {
 	private int gameLength;
 	private String farmType;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-	
-	}
 
 	/**
-	 * Create the application.
-	 * @wbp.parser.entryPoint
+	 * Constructor for the application.
+	 * runs the setup window when called 
+	 * @param main game manager
+	 * 
 	 */
 	public FarmSetupWindow(Main inMain) {
 		manager = inMain;

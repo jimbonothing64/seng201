@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Game","l":"Animal"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"Game","l":"Animal"},{"p":"Game","l":"AnimalItem"},{"p":"Game","l":"Chicken"},{"p":"Game","l":"Cow"},{"p":"Game","l":"Crop"},{"p":"Game","l":"CropItem"},{"p":"Game","l":"Farm"},{"p":"Game","l":"Farmer"},{"p":"Game","l":"FarmSetupWindow"},{"p":"Game","l":"GameWindow"},{"p":"Game","l":"Main"},{"p":"Game","l":"MarketWindow"},{"p":"Game","l":"Pig"}]

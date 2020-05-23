@@ -113,6 +113,13 @@ public class Farm {
 	public void addCropItem(CropItem item) {
 		cropItems.add(item);
 	}
+	
+	public ArrayList<Animal> getAnimals() {
+		return animals;
+	}
+	public ArrayList<Crop> getCrops() {
+		return crops;
+	}
 	//matures each crop by 1 day at the end of each day
 	public void growCrops(int day) {
 		for (int i = 0; i < crops.size(); i++) {

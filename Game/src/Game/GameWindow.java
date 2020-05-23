@@ -13,8 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.AbstractListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class GameWindow {
@@ -25,9 +27,9 @@ public class GameWindow {
 	private JLabel lblMoney;
 	private JLabel lblFarmerInfo;
 	private Farm farm;
-	
-	
+	private ArrayList<String> animals = new ArrayList<String>();
 	private Main manager;
+	private JList<String> listLivestock;
 	
 
 	/**
@@ -68,7 +70,13 @@ public class GameWindow {
 	public void finishedWindow() {
 		manager.closeGameWindow(this);
 	}
-
+	// returns a list of animal descriptions to show in game panel
+	public ArrayList<String> animalList() {
+		for (int i = 0; i < farm.getAnimals().size(); i++) {
+			animals.add(farm.getAnimals().get(i).toString());
+		}
+		return animals;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -90,10 +98,21 @@ public class GameWindow {
 		lblLivestock.setBounds(10, 11, 367, 14);
 		panelLivestock.add(lblLivestock);
 		
-		JList listLivestock = new JList();
+		listLivestock = new JList<String>();
 		listLivestock.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listLivestock.setBounds(10, 36, 367, 299);
+		listLivestock.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			ArrayList<String> values = animalList();
+			public int getSize() {
+				return values.size();
+			}
+			public String getElementAt(int index) {
+				return values.get(index);
+			}
+		});
 		panelLivestock.add(listLivestock);
+
 		
 		JButton btnPlayWithAnimals = new JButton("Play");
 		btnPlayWithAnimals.addActionListener(new ActionListener() {
@@ -204,6 +223,7 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				int earnings = farm.endDay();
 				updateFarmInfo();
+				//listLivestock.set
 				if (earnings > 0) {
 					JOptionPane.showMessageDialog(null,"You earned $" + earnings + " today from livestock!");
 				}
@@ -215,6 +235,9 @@ public class GameWindow {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
 								+ "you have finished the game with a total of $" +farm.getMoney());
 				}
+				
+				//listLivestock.setListData(animalList());
+				listLivestock.updateUI();
 			}
 		});
 		btnNextDay.setBounds(595, 11, 179, 51);

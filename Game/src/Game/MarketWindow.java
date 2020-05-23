@@ -63,13 +63,13 @@ public class MarketWindow {
 	
 	public void addAnimalItem(Farm farm, int amount) {
 		if (amount == 2) {
-			CropItem item = new CropItem("fertiliser");
+			CropItem item = new CropItem("hay");
 			farm.addCropItem(item);
-		} else if (amount == 3) {
-			CropItem item = new CropItem("compost");
+		} else if (amount == 5) {
+			CropItem item = new CropItem("grain");
 			farm.addCropItem(item);
-		} else if (amount == 4) {
-			CropItem item = new CropItem("rootblast");
+		} else if (amount == 7) {
+			CropItem item = new CropItem("health pellets");
 			farm.addCropItem(item);
 		}
 	}
@@ -78,7 +78,7 @@ public class MarketWindow {
 		if (amount == 3) {
 			Animal animal = new Chicken();
 			farm.addAnimal(animal);
-		} else if (amount == 7) {
+		} else if (amount == 6) {
 			Animal animal = new Pig();
 			farm.addAnimal(animal);
 		} else if (amount == 9) {
@@ -274,7 +274,7 @@ public class MarketWindow {
 		list4.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		list4.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			String[] values = new String[] {"hay              $3",
+			String[] values = new String[] {"hay              $2",
 					"grain            $5","health pellet  $7",};
 			public int getSize() {
 				return values.length;

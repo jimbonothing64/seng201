@@ -39,7 +39,7 @@ public class FarmSetupWindow {
 	/**
 	 * Constructor for the application.
 	 * runs the setup window when called 
-	 * @param main game manager
+	 * @param Main game manager
 	 * 
 	 */
 	public FarmSetupWindow(Main inMain) {

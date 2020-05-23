@@ -33,6 +33,7 @@ public class GameWindow {
 	private String[] crops = new String[50];
 	private String[] cropItems = new String[50];
 	private String[] animalItems = new String[50];
+	private String[] cropVarieties = new String [50];
 	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
@@ -97,6 +98,10 @@ public class GameWindow {
 			crops[i] = farm.getCrops().get(i).toString();
 		}
 		return crops;
+	}
+	
+	public String[] cropVarieties() {
+		return farm.getCropVarieties().toArray(cropVarieties);
 	}
 	
 	
@@ -204,7 +209,7 @@ public class GameWindow {
 					JOptionPane.showMessageDialog(null,"please select both an item and a crop veriety to use it on.");
 				} else {
 					useCropItem(selectedCrop, selectedCropItem);
-					listCropItems.setListData(cropItemList());
+					listCrops.setListData(cropList());
 					panelCropItems.setVisible(false);
 					panelCrops.setVisible(true);
 				}
@@ -236,7 +241,7 @@ public class GameWindow {
 		listCropsCropItem.setBounds(10, 201, 367, 134);
 		listCropsCropItem.setModel(new AbstractListModel<String>() {
 			private static final long serialVersionUID = 1L;
-			String[] values = cropList();
+			String[] values = cropVarieties();
 			public int getSize() {
 				return values.length;
 			}
@@ -407,6 +412,8 @@ public class GameWindow {
 				if (farm.getCropInfo() == "You have no crops") {
 					JOptionPane.showMessageDialog(null,"You don't have any crops yet!");
 				} else {
+				listCropItems.setListData(cropItemList());
+				listCropsCropItem.setListData(cropVarieties());
 				panelCrops.setVisible(false);
 				panelCropItems.setVisible(true);
 				updateFarmInfo();

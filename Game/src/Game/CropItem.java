@@ -5,7 +5,7 @@ package Game;
 public class CropItem {
 	private String name;
 	private int cost;
-	private int value;
+	private int growth;
 	
 	//sets item values depending on item name
 	public CropItem(String type) {
@@ -14,13 +14,13 @@ public class CropItem {
 		
 		if (type == "fertiliser") {
 			cost = 20;
-			value = 2;
+			growth = 2;
 		} else 	if (type == "rootblast") {
 			cost = 45;
-			value = 5;
+			growth = 5;
 		} else if (type == "compost") {
 			cost = 35;
-			value = 4;
+			growth = 4;
 		}
 	}
 	
@@ -33,10 +33,10 @@ public class CropItem {
 		 return cost;
 	 }
 	 
-	 public int getValue() {
-		 return value;
+	 public int getGrowth() {
+		 return growth;
 	 }
 	 public String toString() {
-		 return name + ":  reduce harvest time by " + value + " days";
+		 return name + ":  reduce harvest time by " + growth + " days";
 	 }
 }

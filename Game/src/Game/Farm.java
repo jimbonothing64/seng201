@@ -99,6 +99,15 @@ public class Farm {
 		return happyDecay;
 	}
 	
+	public float getScore() {
+		int animalBonus = 0;
+		
+		for (Animal animal: animals) {
+			animalBonus += animal.getDailyReward();
+		}
+		return (animalBonus + money) / totalDays;
+	}
+	
 	public void addAnimal(Animal animal) {
 		animals.add(animal);
 	}

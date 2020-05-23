@@ -130,6 +130,16 @@ public class GameWindow {
 		farm.consumeAnimalItem(animalItem);
 	}
 	
+	public void useCropItem(String inString) {
+		CropItem cropItem;
+		if (inString.contains("fertiliser")) {
+			cropItem = new CropItem("fertiliser");
+		} else if (inString.contains("rootblast")) {
+			cropItem = new CropItem("rootblast");
+		} else {
+			cropItem = new CropItem("compost");
+		}
+	}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -168,6 +178,12 @@ public class GameWindow {
 		});
 		
 		JButton buttonUseCropItem = new JButton("Use Crop Item (Confirm)");
+		buttonUseCropItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+		});
 		buttonUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
 		buttonUseCropItem.setBounds(196, 346, 181, 52);
 		panelCropItems.add(buttonUseCropItem);

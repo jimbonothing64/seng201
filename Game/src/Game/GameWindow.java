@@ -115,6 +115,22 @@ public class GameWindow {
 		}
 		return animalItems;
 	}
+	
+	public void useFoodItem(String inString) {
+		AnimalItem animalItem;
+		if (inString.contains("hay")) {
+			animalItem = new AnimalItem("hay");
+		} else if (inString.contains("health pellets")) {
+			animalItem = new AnimalItem("health pellets");
+		} else {
+			animalItem = new AnimalItem("grain");
+		}
+		
+		farm.feedAnimals(animalItem);
+		farm.consumeAnimalItem(animalItem);
+	}
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -221,6 +237,21 @@ public class GameWindow {
 		panelFeedLivestock.add(listFeedingList);
 		
 		JButton buttonUseFood = new JButton("Confirm (Use Item)");
+		buttonUseFood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String animalItemString = listFeedingList.getSelectedValue();
+				if (animalItemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				} else {
+					useFoodItem(animalItemString);
+					listFeedingList.setListData(animalItemList());
+					panelLivestock.setVisible(true);
+					panelFeedLivestock.setVisible(false);
+					updateFarmInfo();
+				}
+
+			}
+		});
 		buttonUseFood.setToolTipText("Uses 1 action point to increase happiness");
 		buttonUseFood.setBounds(196, 346, 181, 52);
 		panelFeedLivestock.add(buttonUseFood);

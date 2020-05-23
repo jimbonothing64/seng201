@@ -50,7 +50,7 @@ public class Animal {
 	public void setHappiness(int value) {
 		if ((value <= 10) && (value >= 0)) {
 			happiness = value;
-		} else if (value >= 0) {
+		} else if (value <= 0) {
 			happiness = 0;
 		} else {
 			happiness = 10;
@@ -60,7 +60,7 @@ public class Animal {
 	public void setHealth(int value) {
 		if ((value <= 10) && (value >= 0)) {
 			health = value;
-		} else if (value >= 0) {
+		} else if (value <= 0) {
 			health = 0;
 		} else {
 			health = 10;
@@ -68,7 +68,7 @@ public class Animal {
 	}
 	
 	public String toString() {
-		return animalType + ": " + " HEALTH:" + health + " HAPPINESS:" + happiness + " DAILY REWARD:" + getDailyReward();
+		return animalType + " (" + "Health:" + health + " Happiness:" + happiness + " Daily Reward:" + getDailyReward() + ")";
 	}
 	
 	public void feedItem(AnimalItem item) {

@@ -187,28 +187,6 @@ public class GameWindow {
 		});
 		panelCrops.add(listCrops);
 		
-		JButton btnHarvest = new JButton("Harvest");
-		btnHarvest.setToolTipText("Uses 1 action point to harvest all crops ready to harvest");
-		btnHarvest.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!farm.actionValid()) {
-					JOptionPane.showMessageDialog(null,"no action points left");
-				} else {
-					int income = farm.harvest();
-					if (income == 0) {
-						JOptionPane.showMessageDialog(null,"no crops ready for harvest");
-				} else {
-					JOptionPane.showMessageDialog(null,"$" + income + " earned from harvest");
-					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
-					updateFarmInfo();
-					listCrops.setListData(cropList());
-				}
-			}
-			}
-		});
-		btnHarvest.setBounds(10, 346, 181, 52);
-		panelCrops.add(btnHarvest);
-		
 		JButton btnUseCropItem = new JButton("Use Crop Item (One Veriety)");
 		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
 		btnUseCropItem.addActionListener(new ActionListener() {
@@ -278,7 +256,8 @@ public class GameWindow {
 				
 				if(farm.getTotalDays() < farm.getCurrentDay()) {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
-								+ "you have finished the game with a total of $" +farm.getMoney());
+								+ "you have finished the game with a total of $" + farm.getMoney()
+								+ " and a score of " + farm.getScore() + "!");
 				}
 				
 			}
@@ -292,8 +271,30 @@ public class GameWindow {
 				finishedWindow();
 			}
 		});
-		btnVisitStore.setBounds(199, 11, 179, 51);
+		btnVisitStore.setBounds(406, 11, 179, 51);
 		panelMisc.add(btnVisitStore);
+		
+		JButton btnHarvest = new JButton("Harvest");
+		btnHarvest.setBounds(199, 10, 181, 52);
+		panelMisc.add(btnHarvest);
+		btnHarvest.setToolTipText("Uses 1 action point to harvest all crops ready to harvest");
+		btnHarvest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+					int income = farm.harvest();
+					if (income == 0) {
+						JOptionPane.showMessageDialog(null,"no crops ready for harvest");
+				} else {
+					JOptionPane.showMessageDialog(null,"$" + income + " earned from harvest");
+					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
+					updateFarmInfo();
+					listCrops.setListData(cropList());
+				}
+			}
+			}
+		});
 	}
 	
 	// update all labels presenting user with basic farm info

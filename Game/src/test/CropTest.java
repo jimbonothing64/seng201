@@ -69,5 +69,14 @@ class CropTest {
 		assertEquals(farm.getMoney(), 120);
 		assertEquals(farm.getCrops().size(), 5);
 	}
+	@Test
+	/* test for cropItem class functionality.
+	 * whether the use of cropItem on Crops will reduce harvest time
+	 * of only that type of crop correctly and also if crop item
+	 * consumes from farm inventory.
+	 */
+	void cropItemTest() {
+		
+	}
 
 }

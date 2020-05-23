@@ -1,7 +1,12 @@
 package Game;
 /*
- * Class for animals
- * 
+ * Class for farm animals
+ * which are stored in the farm class.
+ * animals are purchased through the store
+ * and will generate income each day 
+ * depending on their health and happiness
+ * levels which are raised through feeding and playing.
+ * hunger and happiness decay if not fed or tended to.
  */
 
 public class Animal {
@@ -11,6 +16,7 @@ public class Animal {
 	private int baseReward;
 	private int health;
 	
+	//super constructor which is called through child classes
 	public Animal(String type, int price, int happy, int reward, int healthLevel) {
 		animalType = type;
 		purchacePrice = price;
@@ -90,8 +96,6 @@ public class Animal {
 		System.out.println(animal);
 		System.out.println(cow);
 		System.out.println(chicken); */
-		String[] s = new String[100];
-		System.out.println(s[2]);
 		
 	}
 

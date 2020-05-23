@@ -178,8 +178,9 @@ public class MarketWindow {
 					int value = itemString.charAt(itemString.length()-1);
 					if (farm.getMoney() < value - '0') {
 						JOptionPane.showMessageDialog(null,"insufficient funds"); 
-				} 
-					else {
+				} else if (farm.getMaxCrops() == farm.getCrops().size()) {
+					JOptionPane.showMessageDialog(null,"max crop size reached. tend to farmland to increase cropfield size"); 
+				} else {
 						int num = itemString.charAt(itemString.length()-1) -'0';
 						farm.setMoney(farm.getMoney() - num);
 						addCrop(farm, num);

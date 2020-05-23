@@ -21,6 +21,7 @@ public class Farm {
 	private int totalDays;
 	private int actionPoints;
 	private int happyDecay;	
+	private int maxCrops = 10;
 	
 
 	// sets farm bonuses based on farm type
@@ -120,6 +121,9 @@ public class Farm {
 	public ArrayList<Crop> getCrops() {
 		return crops;
 	}
+	public int getMaxCrops() {
+		return maxCrops;
+	}
 	//matures each crop by 1 day at the end of each day
 	public void growCrops(int day) {
 		for (int i = 0; i < crops.size(); i++) {
@@ -153,6 +157,7 @@ public class Farm {
 	
 	public void tendFarm() {
 		actionPoints += 1;
+		maxCrops += 2;
 		happyDecay += 3;
 	}
 	
@@ -161,21 +166,22 @@ public class Farm {
 	}
 	
 	public int harvest() {
-		actionPoints += 1;
 		int total = 0;
 		for (Crop crop: crops) {
 			if(crop.getHarvestable() == 0) {
 				total += crop.getIncome();
 			}
 		}
+		if (total == 0) return 0;
+		actionPoints += 1;
 		ArrayList<Crop> updatedArray = new ArrayList<Crop>();
 		for (Crop crop: crops) {
 			if (crop.getHarvestable() != 0) {
 				updatedArray.add(crop);
 			}
 		}
+		money += total;
 		crops = updatedArray;
-		
 		return total;
 	}
 	

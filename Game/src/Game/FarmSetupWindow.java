@@ -163,6 +163,7 @@ public class FarmSetupWindow {
 		
 		JRadioButton rdbtnFixerUpper = new JRadioButton("Fixer-Upper");
 		rdbtnFixerUpper.setSelected(true);
+		farmType = rdbtnFixerUpper.getText();
 		rdbtnFixerUpper.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				if (rdbtnFixerUpper.isSelected()) {
@@ -204,6 +205,7 @@ public class FarmSetupWindow {
 		textFarmTypeInfo.setBounds(274, 89, 412, 103);
 		panelFarmInfo.add(textFarmTypeInfo);
 		textFarmTypeInfo.setColumns(10);
+		textFarmTypeInfo.setText("A farm that starts you off with extra cash");
 		
 		JLabel lblNewLabel = new JLabel("Farm Type Bonuses:");
 		lblNewLabel.setBounds(274, 68, 231, 14);

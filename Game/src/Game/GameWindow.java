@@ -27,8 +27,8 @@ public class GameWindow {
 	private JLabel lblMoney;
 	private JLabel lblFarmerInfo;
 	private Farm farm;
-	private String[] animals = new String[20];
-	private String[] crops = new String[20];
+	private String[] animals = new String[50];
+	private String[] crops = new String[50];
 	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
@@ -81,6 +81,7 @@ public class GameWindow {
 	}
 	
 	public String[] cropList() {
+		crops = new String[50];
 		for (int i=0; i < farm.getCrops().size(); i++) {
 			crops[i] = farm.getCrops().get(i).toString();
 		}
@@ -128,6 +129,8 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				if (!farm.actionValid()) {
 					JOptionPane.showMessageDialog(null,"no action points left");
+				} else if (farm.getAnimals().size() == 0) {
+					JOptionPane.showMessageDialog(null,"You have no animals to play with");
 				} else {
 				farm.petAnimals();
 				listLivestock.setListData(animalList());
@@ -147,6 +150,8 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				if (!farm.actionValid()) {
 					JOptionPane.showMessageDialog(null,"no action points left");
+				} else if (farm.getAnimals().size() == 0) {
+					JOptionPane.showMessageDialog(null,"You have no animals to feed");
 				} else {
 				//item = getselecteditem();
 				//farm.feedAnimals(item);
@@ -162,7 +167,7 @@ public class GameWindow {
 		panelCrops.setBounds(408, 54, 387, 409);
 		frmFarmOwnerSimulator.getContentPane().add(panelCrops);
 		
-		JLabel lblCrops = new JLabel("Crops");
+		JLabel lblCrops = new JLabel("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
 		lblCrops.setHorizontalAlignment(SwingConstants.CENTER);
 		lblCrops.setBounds(10, 11, 367, 14);
 		panelCrops.add(lblCrops);
@@ -182,14 +187,27 @@ public class GameWindow {
 		});
 		panelCrops.add(listCrops);
 		
-		JButton btnWater = new JButton("Water (One Veriety)");
-		btnWater.setToolTipText("Uses 1 action point to speed up harvest");
-		btnWater.addActionListener(new ActionListener() {
+		JButton btnHarvest = new JButton("Harvest");
+		btnHarvest.setToolTipText("Uses 1 action point to harvest all crops ready to harvest");
+		btnHarvest.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+					int income = farm.harvest();
+					if (income == 0) {
+						JOptionPane.showMessageDialog(null,"no crops ready for harvest");
+				} else {
+					JOptionPane.showMessageDialog(null,"$" + income + " earned from harvest");
+					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
+					updateFarmInfo();
+					listCrops.setListData(cropList());
+				}
+			}
 			}
 		});
-		btnWater.setBounds(10, 346, 181, 52);
-		panelCrops.add(btnWater);
+		btnHarvest.setBounds(10, 346, 181, 52);
+		panelCrops.add(btnHarvest);
 		
 		JButton btnUseCropItem = new JButton("Use Crop Item (One Veriety)");
 		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
@@ -231,8 +249,13 @@ public class GameWindow {
 		JButton btnTendToFarmland = new JButton("Tend To Farmland");
 		btnTendToFarmland.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				farm.tendFarm();
-				updateFarmInfo();
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+					farm.tendFarm();
+					updateFarmInfo();
+					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
+			}
 			}
 		});
 		btnTendToFarmland.setToolTipText("Uses 1 action and slows down decay of animal happiness");
@@ -253,7 +276,7 @@ public class GameWindow {
 					JOptionPane.showMessageDialog(null,"Your farm is in bad shape! Tend to it or your animals will become less happy");
 				}
 				
-				if(farm.getTotalDays() == farm.getCurrentDay()) {
+				if(farm.getTotalDays() < farm.getCurrentDay()) {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
 								+ "you have finished the game with a total of $" +farm.getMoney());
 				}

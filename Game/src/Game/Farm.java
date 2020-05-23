@@ -133,6 +133,16 @@ public class Farm {
 	public ArrayList<Crop> getCrops() {
 		return crops;
 	}
+	public ArrayList<String> getCropVarieties() {
+		 ArrayList<String> cropVarieties = new  ArrayList<String>();
+		for (Crop crop : crops) {
+			if (!(cropVarieties.contains(crop.getName()))) {
+				cropVarieties.add(crop.getName());
+			}
+		}
+		return cropVarieties;
+	}
+	
 	public ArrayList<CropItem> getCropItems() {
 		return cropItems;
 	}
@@ -165,6 +175,13 @@ public class Farm {
 		}
 	}
 	
+	public void useCropItem(Crop inCrop, CropItem inCropItem) {
+		for (Crop crop : crops) {
+			if (crop.getName() == inCrop.getName()) {
+				crop.useItem(inCropItem);
+			}
+		}
+	}
 	
 	// feed all animals with item
 	public void feedAnimals(AnimalItem item) {

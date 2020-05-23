@@ -365,7 +365,11 @@ public class GameWindow {
 					JOptionPane.showMessageDialog(null,"Your farm is in bad shape! Tend to it or your animals will become less happy");
 				}
 				
-				if(farm.getTotalDays() < farm.getCurrentDay()) {
+				if (farm.getTotalDays() - 1 == farm.getCurrentDay()) {
+					btnNextDay.setText("Finish Game");
+				}
+				
+				if(farm.getTotalDays() <= farm.getCurrentDay()) {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
 								+ "you have finished the game with a total of $" + farm.getMoney()
 								+ " and a score of " + farm.getScore() + "!");

@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 public class GameWindow {
 
@@ -29,10 +31,12 @@ public class GameWindow {
 	private Farm farm;
 	private String[] animals = new String[50];
 	private String[] crops = new String[50];
+	private String[] cropItems = new String[50];
 	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
 	private JList<String> listCropsCropItem;
+	private JList<String> listCropItems;
 	private JPanel panelFeedLivestock;
 	private JPanel panelLivestock;
 	private JPanel panelCropItems;
@@ -92,6 +96,15 @@ public class GameWindow {
 		}
 		return crops;
 	}
+	
+	
+	public String[] cropItemList() {
+		cropItems = new String[50];
+		for (int i = 0; i < farm.getCropItems().size(); i++) {
+			cropItems[i] = farm.getCropItems().get(i).toString();
+		}
+		return cropItems;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -109,10 +122,24 @@ public class GameWindow {
 		frmFarmOwnerSimulator.getContentPane().add(panelCropItems);
 		panelCropItems.setVisible(false);
 		
-		JList<String> listCropItems = new JList<String>();
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setBounds(10, 39, 367, 126);
+		panelCropItems.add(scrollPane);
+		
+		listCropItems = new JList<String>();
+		scrollPane.setViewportView(listCropItems);
 		listCropItems.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listCropItems.setBounds(10, 36, 367, 126);
-		panelCropItems.add(listCropItems);
+		listCropItems.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = cropItemList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 		
 		JButton buttonUseCropItem = new JButton("Use Crop Item (Confirm)");
 		buttonUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");

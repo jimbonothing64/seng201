@@ -130,6 +130,11 @@ public class Farm {
 	public ArrayList<Crop> getCrops() {
 		return crops;
 	}
+	
+	public ArrayList<CropItem> getCropItems() {
+		return cropItems;
+	}
+	
 	public int getMaxCrops() {
 		return maxCrops;
 	}

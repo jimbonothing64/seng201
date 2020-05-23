@@ -4,6 +4,7 @@ package Game;
  * child class that inherits animal superclass.
  *
  */
+
 /**
  * calls the super() constructor of the
  * animal super class with associated

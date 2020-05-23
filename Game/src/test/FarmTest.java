@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Game.AnimalItem;
+import Game.Crop;
 import Game.CropItem;
 import Game.Farm;
 import Game.Farmer;
@@ -64,7 +65,11 @@ class FarmTest {
 		testFarm = new Farm("Fixer-Upper",brown,5);
 		assertEquals(testFarm.getMoney(), 200);
 		assertEquals(testFarm.getPettingBonus(), 0);
-		//testFarm = new
-	}
+		testFarm = new Farm("Volcanic Soil Plantation", brown, 5);
+		Crop potato = new Crop("potato");
+		assertEquals(potato.getHarvestable(),2);
+		testFarm.addCrop(potato);
+		assertEquals(potato.getHarvestable(), 1);
+	}	
 
 }

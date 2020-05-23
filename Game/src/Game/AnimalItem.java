@@ -1,10 +1,13 @@
 package Game;
-/*
+/**
  * item class for animals 
  * items are consumed by animals to
  * increase happiness or health levels
  */
 public class AnimalItem {
+	/**
+	 * name identifies the 
+	 */
 	private String name;
 	private int cost;
 	private int health;

@@ -128,18 +128,19 @@ public class MarketWindow {
 		farm = manager.getFarm();
 		initialize();
 		frame.setVisible(true);
-		
 	}
-	
+	/**
+	 * close window
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
-	
+	/**
+	 * pass window object back to main to be closed and open the next window
+	 */
 	public void finishedWindow() {
 		manager.closeMarketWindow(this);
 	}
-	
-
 	/**
 	 * Initialize the contents of the frame.
 	 */

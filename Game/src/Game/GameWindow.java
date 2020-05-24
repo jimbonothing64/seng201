@@ -1,5 +1,8 @@
 package Game;
-
+/**
+ * The main GUI for the game used to view animals, crops
+ * , items, do actions and view the marketplace
+ */
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -20,21 +23,17 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-//ACTION POINTS ON FEED
-public class GameWindow {
 
+public class GameWindow {
+/**
+ *  Object for GUI
+ */
+	// GUI objects that interact with each-other are declared here
 	private JFrame frmFarmOwnerSimulator;
 	private JLabel lblDaysLeft;
 	private JLabel lblActions;
 	private JLabel lblMoney;
 	private JLabel lblFarmerInfo;
-	private Farm farm;
-	private String[] animals = new String[50];
-	private String[] crops = new String[50];
-	private String[] cropItems = new String[50];
-	private String[] animalItems = new String[50];
-	private String[] cropVarieties = new String [50];
-	private Main manager;
 	private JList<String> listLivestock;
 	private JList<String> listCrops;
 	private JList<String> listCropsCropItem;
@@ -44,6 +43,35 @@ public class GameWindow {
 	private JPanel panelLivestock;
 	private JPanel panelCropItems;
 	private JPanel panelCrops;
+	/**
+	 * Main class to be passed around when changing windows
+	 */
+	private Main manager;
+	/**
+	 * player's farm object
+	 */
+	private Farm farm;
+	/**
+	 * used to store animals for display
+	 */
+	private String[] animals = new String[50];
+	/**
+	 * used to store crops for display
+	 */
+	private String[] crops = new String[50];
+	/**
+	 * used to store crop items for display
+	 */
+	private String[] cropItems = new String[50];
+	/**
+	 * used to store animal items for display
+	 */
+	private String[] animalItems = new String[50];
+	/**
+	 * used to store crop types player has for display
+	 */
+	private String[] cropVarieties = new String [50];
+	
 	
 
 	/**
@@ -76,22 +104,32 @@ public class GameWindow {
 		frmFarmOwnerSimulator.setVisible(true);
 		updateFarmInfo();
 	}
-	
+	/**
+	 * close the window
+	 */
 	public void closeWindow() {
 		frmFarmOwnerSimulator.dispose();
 	}
-	
+	/**
+	 * pass object back so other windows can be opened before closing
+	 */
 	public void finishedWindow() {
 		manager.closeGameWindow(this);
 	}
-	// returns a list of animal / crop descriptions to show in game panel
+	/**
+	 * generate animal list for display based on current animals
+	 * @return list of animals for display
+	 */
 	public String[] animalList() {
 		for (int i = 0; i < farm.getAnimals().size(); i++) {
 			animals[i] = farm.getAnimals().get(i).toString();
 		}
 		return animals;
 	}
-	
+	/**
+	 * generate crop list for the display
+	 * @return crop list for display
+	 */
 	public String[] cropList() {
 		crops = new String[50];
 		for (int i=0; i < farm.getCrops().size(); i++) {
@@ -99,12 +137,17 @@ public class GameWindow {
 		}
 		return crops;
 	}
-	
+	/**
+	 * generate list of crop varieties owned
+	 * @return list of crop varieties
+	 */
 	public String[] cropVarieties() {
 		return farm.getCropVarieties().toArray(cropVarieties);
 	}
-	
-	
+	/**
+	 * generate crop item list for the display
+	 * @return crop item list for display
+	 */
 	public String[] cropItemList() {
 		cropItems = new String[50];
 		for (int i = 0; i < farm.getCropItems().size(); i++) {
@@ -112,7 +155,10 @@ public class GameWindow {
 		}
 		return cropItems;
 	}
-	
+	/**
+	 * generate animal item list for the display
+	 * @return animal item list for display
+	 */
 	public String[] animalItemList() {
 		animalItems = new String[50];
 		for (int i = 0; i < farm.getAnimalItems().size(); i++) {
@@ -120,7 +166,10 @@ public class GameWindow {
 		}
 		return animalItems;
 	}
-	
+	/**
+	 * use a food item using farm methods
+	 * @param inString string provided by GUI
+	 */
 	public void useFoodItem(String inString) {
 		AnimalItem animalItem;
 		if (inString.contains("hay")) {
@@ -134,7 +183,10 @@ public class GameWindow {
 		farm.feedAnimals(animalItem);
 		farm.consumeAnimalItem(animalItem);
 	}
-	
+	/**
+	 * use a crop item using farm methods
+	 * @param inString string provided by GUI
+	 */
 	public void useCropItem(String inStringCropItem, String inStringCrop) {
 		CropItem cropItem;
 		Crop crop;
@@ -162,7 +214,16 @@ public class GameWindow {
 		
 		farm.useCropItem(crop, cropItem);
 		farm.consumeCropItem(cropItem);
-	}
+		}
+	/**
+	 * update GUI labels (used when action is preformed)
+	 */
+	public void updateFarmInfo() {
+			lblDaysLeft.setText("Day: " + farm.getCurrentDay() + "/" + farm.getTotalDays());
+			lblActions.setText("Actions: " + farm.getActionPoints() + "/2");
+			lblMoney.setText("Money: $" + farm.getMoney() );
+			lblFarmerInfo.setText(farm.getFarmerInfo());
+		}
 	
 	/**
 	 * Initialize the contents of the frame.
@@ -543,11 +604,4 @@ public class GameWindow {
 		});
 	}
 	
-	// update all labels presenting user with basic farm info
-	void updateFarmInfo() {
-		lblDaysLeft.setText("Day: " + farm.getCurrentDay() + "/" + farm.getTotalDays());
-		lblActions.setText("Actions: " + farm.getActionPoints() + "/2");
-		lblMoney.setText("Money: $" + farm.getMoney() );
-		lblFarmerInfo.setText(farm.getFarmerInfo());
-	}
 }

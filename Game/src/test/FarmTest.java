@@ -50,7 +50,7 @@ class FarmTest {
 		testFarm.addAnimalItem(aitem);
 		testFarm.consumeCropItem(citem);
 		testFarm.consumeAnimalItem(aitem);
-		assertEquals(testFarm.getCropItems().size(),2);
+		assertEquals(testFarm.getCropItems().size(),1);
 		assertEquals(testFarm.getAnimalItems().size(), 0);
 	}
 	@Test
@@ -72,13 +72,13 @@ class FarmTest {
 	//tests each farm class and their bonuses
 	void classTest() {
 		Animal pig = new Pig();
-		assertEquals(pig.getHappiness(), 2);
+		assertEquals(pig.getHappiness(), 1);
 		testFarm.addAnimal(pig);
 		testFarm.petAnimals();
 		assertEquals(testFarm.getPettingBonus(), 1);
-		assertEquals(pig.getHappiness(), 4);
+		assertEquals(pig.getHappiness(), 3);
 		testFarm = new Farm("Fixer-Upper",brown,5);
-		assertEquals(testFarm.getMoney(), 200);
+		assertEquals(testFarm.getMoney(), 35);
 		assertEquals(testFarm.getPettingBonus(), 0);
 		testFarm = new Farm("Volcanic Soil Plantation", brown, 5);
 		Crop potato = new Crop("potato");
@@ -86,7 +86,7 @@ class FarmTest {
 		testFarm.addCrop(potato);
 		assertEquals(potato.getHarvestable(), 1);
 		testFarm = new Farm("regular joe", brown, 6);
-		assertEquals(testFarm.getMoney(),100);
+		assertEquals(testFarm.getMoney(),25);
 		assertEquals(testFarm.getPettingBonus(),0);
 		
 	}

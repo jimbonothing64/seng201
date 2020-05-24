@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Game.Crop;
+import Game.CropItem;
 import Game.Farm;
 import Game.Farmer;
 /* tests crop functionality
@@ -41,8 +42,11 @@ class CropTest {
 		assertEquals(6, farm.getCrops().size());
 	}
 	@Test
-	// initially 3 days until maturity
-	// matures object outside of array, tests if same object inside array matures
+	/**
+	 *  initially 4 days until maturity. matures object 
+	 *  outside of array, Farm perk reduces harvestable by 1 when 
+	 *  added to farm array. tests if same object inside array matures
+	 */
 	void matureTest() {
 		Crop carrot = farm.getCrops().get(0);
 		assertEquals(carrot.toString(),"carrot (Days until harvestble: 3  value: 11)");
@@ -53,7 +57,7 @@ class CropTest {
 	@Test
 	/* tests harvest() function by checking if there are valid harvests,
 	 * then maturing pumpkin until harvestable. checks if pumpkin is removed from
-	 * array and money is obtained correctly.
+	 * array. Also tests action point use and harvested money
 	 */
 	
 	void harvestTest() {
@@ -66,17 +70,25 @@ class CropTest {
 		assertEquals(farm.getActionPoints(), 0);
 		assertEquals(farm.harvest(), 20);
 		assertEquals(farm.getActionPoints(), 1);
-		assertEquals(farm.getMoney(), 120);
+		assertEquals(farm.getMoney(), 45);
 		assertEquals(farm.getCrops().size(), 5);
 	}
 	@Test
-	/* test for cropItem class functionality.
-	 * whether the use of cropItem on Crops will reduce harvest time
-	 * of only that type of crop correctly and also if crop item
-	 * consumes from farm inventory.
+	/**
+	 * uses item on crop and tests if harvestable
+	 * decreases by item's growth value
+	 * pumpkin initial harvestable is 7 but is 6 when
+	 * added to Farm with crop perk active
 	 */
 	void cropItemTest() {
+		CropItem item = new CropItem("compost");
+		Crop pumpkin = farm.getCrops().get(2);
+		assertEquals(pumpkin.getHarvestable(), 6);
+		assertEquals(item.getGrowth(), 4);
+		farm.useCropItem(pumpkin,item);
+		assertEquals(farm.getCrops().get(2).getHarvestable(), 6-4);
+		
+		
 		
 	}
-
-}
+}	

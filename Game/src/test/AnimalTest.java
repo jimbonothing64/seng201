@@ -42,15 +42,15 @@ class AnimalTest {
 	 * petting them and letting their happiness decay
 	 */
 	void happinessTest() {
-		assertEquals(farm.getAnimals().get(0).getHappiness(), 2);
-		assertEquals(farm.getAnimals().get(1).getHappiness(), 2);
+		assertEquals(farm.getAnimals().get(0).getHappiness(), 1);
+		assertEquals(farm.getAnimals().get(1).getHappiness(), 1);
 		farm.petAnimals();
-		assertEquals(farm.getAnimals().get(0).getHappiness(), 4);
-		assertEquals(farm.getAnimals().get(1).getHappiness(), 4);
-		farm.endDay();
-		farm.endDay();
 		assertEquals(farm.getAnimals().get(0).getHappiness(), 3);
 		assertEquals(farm.getAnimals().get(1).getHappiness(), 3);
+		farm.endDay();
+		farm.endDay();
+		assertEquals(farm.getAnimals().get(0).getHappiness(), 2);
+		assertEquals(farm.getAnimals().get(1).getHappiness(), 2);
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ class AnimalTest {
 	void baseRewardTest() {
 		int earnings = chicken.getDailyReward() + cow.getDailyReward() + pig.getDailyReward();
 		farm.endDay();
-		assertEquals(farm.getMoney(), 100 + earnings);
+		assertEquals(farm.getMoney(), 25 + earnings);
 	}
 	@Test
 	/* tests if an animal is fed, their health

@@ -216,7 +216,7 @@ public class GameWindow {
 		farm.consumeCropItem(cropItem);
 		}
 	/**
-	 * update GUI labels (used when action is preformed)
+	 * update GUI labels (used when action is performed)
 	 */
 	public void updateFarmInfo() {
 			lblDaysLeft.setText("Day: " + farm.getCurrentDay() + "/" + farm.getTotalDays());

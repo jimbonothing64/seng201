@@ -459,7 +459,8 @@ public class GameWindow {
 				
 				if(farm.getTotalDays() <= farm.getCurrentDay()) {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
-								+ "you have finished the game with a total of $" + farm.getMoney()
+								+ farm.getFarmerInfo()  + " has finished the game with a total of $" + farm.getMoney()
+								+ " in " + farm.getTotalDays() + " days"
 								+ " and a score of " + farm.getScore() + "!");
 						closeWindow();
 				}

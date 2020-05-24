@@ -54,19 +54,19 @@ public class GameWindow {
 	/**
 	 * used to store animals for display
 	 */
-	private String[] animals = new String[50];
+	private String[] animals = new String[100];
 	/**
 	 * used to store crops for display
 	 */
-	private String[] crops = new String[50];
+	private String[] crops = new String[100];
 	/**
 	 * used to store crop items for display
 	 */
-	private String[] cropItems = new String[50];
+	private String[] cropItems = new String[100];
 	/**
 	 * used to store animal items for display
 	 */
-	private String[] animalItems = new String[50];
+	private String[] animalItems = new String[100];
 	/**
 	 * used to store crop types player has for display
 	 */
@@ -131,7 +131,7 @@ public class GameWindow {
 	 * @return crop list for display
 	 */
 	public String[] cropList() {
-		crops = new String[50];
+		crops = new String[100];
 		for (int i=0; i < farm.getCrops().size(); i++) {
 			crops[i] = farm.getCrops().get(i).toString();
 		}
@@ -149,7 +149,7 @@ public class GameWindow {
 	 * @return crop item list for display
 	 */
 	public String[] cropItemList() {
-		cropItems = new String[50];
+		cropItems = new String[100];
 		for (int i = 0; i < farm.getCropItems().size(); i++) {
 			cropItems[i] = farm.getCropItems().get(i).toString();
 		}
@@ -160,7 +160,7 @@ public class GameWindow {
 	 * @return animal item list for display
 	 */
 	public String[] animalItemList() {
-		animalItems = new String[50];
+		animalItems = new String[100];
 		for (int i = 0; i < farm.getAnimalItems().size(); i++) {
 			animalItems[i] = farm.getAnimalItems().get(i).toString();
 		}

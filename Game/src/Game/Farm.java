@@ -394,6 +394,7 @@ public class Farm {
 			earnings += animal.getDailyReward();
 		}
 		
+		//decay animal happiness if farm is in poor shape
 		if (happyDecay > 0) {
 			happyDecay -= 1;
 			} else {
@@ -401,6 +402,12 @@ public class Farm {
 					animal.setHappiness(animal.getHappiness() - 1);
 				}
 			}
+		
+		//decay animal health by 1 every day
+		for (Animal animal : animals) {
+			animal.setHealth(animal.getHealth() - 1);
+		}
+		
 		
 		money += earnings;
 		currentDay += 1;

@@ -12,6 +12,6 @@ package Game;
  */
 public class Cow extends Animal {
 	public Cow() {
-		super("cow", 9, 2, 3, 5);
+		super("cow", 9, 1, 2, 1);
 	}
 }

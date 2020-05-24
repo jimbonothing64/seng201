@@ -49,7 +49,7 @@ public class Farm {
 	 * default starting money once game starts
 	 * except for a specified farm class
 	 */
-	private int money = 100;
+	private int money = 50;
 	/**
 	 * the current day the game is at
 	 */
@@ -92,40 +92,14 @@ public class Farm {
 		totalDays = days;
 		currentDay = 0;
 		happyDecay = 1;
+		//set bonus based on farm type player selected
+		cropItems.add(new CropItem("water"));
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
-			money = 200;
+			money = 75;
 		}
 	}
-	
-	public String getAnimalInfo () {
-		String animalInfo = "Animal List:\n";
-		
-		if (animals.size() < 1) {
-			animalInfo = "You have no animals";
-		}
-		
-		for (int i = 0; i < animals.size(); i++) {
-			animalInfo += animals.get(i).toString() + "\n";
-		}
-		
-		return animalInfo;
-	}
-	
-	public String getCropInfo() {
-		String cropInfo = "Crop list:\n";
-		
-		if (crops.size() < 1) {
-			cropInfo = "You have no crops";
-		}
-		for (int i = 0; i < crops.size(); i++) {
-			cropInfo += crops.get(i).toString() + "\n";
-		}
-		
-		return cropInfo;
-	}
-	
 	/**
 	 * @return a string of the farmer's name and age
 	 * to be displayed at the top of the game screen
@@ -244,6 +218,7 @@ public class Farm {
 	 */
 	public ArrayList<String> getCropVarieties() {
 		 ArrayList<String> cropVarieties = new ArrayList<String>();
+		 //add only new types of crop to array
 		for (Crop crop : crops) {
 			if (!(cropVarieties.contains(crop.getName()))) {
 				cropVarieties.add(crop.getName());
@@ -279,6 +254,7 @@ public class Farm {
 	 * @param item is removed from inventory
 	 */
 	public void consumeAnimalItem(AnimalItem item) {
+		//remove first instance of animal item
 		for (AnimalItem animalItem : animalItems) {
 			if (animalItem.getName() == item.getName()) {
 				animalItems.remove(animalItem);
@@ -291,7 +267,12 @@ public class Farm {
 	 * @param item is removed from inventory
 	 */
 	public void consumeCropItem(CropItem item) {
+		//remove first instance of crop item
 		for (CropItem cropItem : cropItems) {
+			//if water do not consume
+			if (cropItem.getName() == "water") {
+				break;
+			}
 			if (cropItem.getName() == item.getName()) {
 				cropItems.remove(cropItem);
 				break;
@@ -299,11 +280,14 @@ public class Farm {
 		}
 	}
 	/**
-	 * checks if each crop in the farm matches
+	 * checks if each crop in the farm matches and uses item
+	 * on all crops of that type
 	 * @param inCrop -the crop type selected for item use
 	 * @param inCropItem -item benefits gained by the crop type
 	 */
 	public void useCropItem(Crop inCrop, CropItem inCropItem) {
+		actionPoints += 1;
+		//use item on all of a particular crop type
 		for (Crop crop : crops) {
 			if (crop.getName() == inCrop.getName()) {
 				crop.useItem(inCropItem);
@@ -317,6 +301,8 @@ public class Farm {
 	 * added to fed animals in farm
 	 */
 	public void feedAnimals(AnimalItem item) {
+		actionPoints += 1;
+		//feed each animal
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).feedItem(item);
 		}
@@ -329,6 +315,7 @@ public class Farm {
 	 */
 	public void petAnimals() {
 		actionPoints += 1;
+		//pet each animal adding a bonus if needed
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).pet(pettingBonus);
 		}
@@ -360,6 +347,7 @@ public class Farm {
 	 */
 	public int harvest() {
 		int total = 0;
+		//harvest all harvestable crops
 		for (Crop crop: crops) {
 			if(crop.getHarvestable() == 0) {
 				total += crop.getIncome();
@@ -367,12 +355,14 @@ public class Farm {
 		}
 		if (total == 0) return 0;
 		actionPoints += 1;
+		//get new array less harvested crops
 		ArrayList<Crop> updatedArray = new ArrayList<Crop>();
 		for (Crop crop: crops) {
 			if (crop.getHarvestable() != 0) {
 				updatedArray.add(crop);
 			}
 		}
+		//add profit to money and update crops list
 		money += total;
 		crops = updatedArray;
 		return total;
@@ -391,6 +381,7 @@ public class Farm {
 			earnings += animal.getDailyReward();
 		}
 		
+		//decay animal happiness if farm is in poor shape
 		if (happyDecay > 0) {
 			happyDecay -= 1;
 			} else {
@@ -399,9 +390,15 @@ public class Farm {
 				}
 			}
 		
+		//decay animal health by 1 every day
+		for (Animal animal : animals) {
+			animal.setHealth(animal.getHealth() - 1);
+		}
+		
+		//add earnings
 		money += earnings;
 		currentDay += 1;
-		
+		//rest action points
 		actionPoints = 0;
 		return earnings;
 	}

@@ -49,7 +49,7 @@ public class Farm {
 	 * default starting money once game starts
 	 * except for a specified farm class
 	 */
-	private int money = 100;
+	private int money = 50;
 	/**
 	 * the current day the game is at
 	 */
@@ -96,7 +96,7 @@ public class Farm {
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
-			money = 200;
+			money = 75;
 		}
 	}
 	/**

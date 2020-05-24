@@ -174,6 +174,77 @@ public class GameWindow {
 		frmFarmOwnerSimulator.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmFarmOwnerSimulator.getContentPane().setLayout(null);
 		
+		panelCrops = new JPanel();
+		panelCrops.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelCrops.setLayout(null);
+		panelCrops.setBounds(408, 54, 387, 409);
+		frmFarmOwnerSimulator.getContentPane().add(panelCrops);
+		
+		JLabel lblCrops = new JLabel("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
+		lblCrops.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCrops.setBounds(10, 11, 367, 14);
+		panelCrops.add(lblCrops);
+		
+		JButton btnUseCropItem = new JButton("Use Crop Item (One Veriety)");
+		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
+		btnUseCropItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (farm.getCrops().size() == 0) {
+					JOptionPane.showMessageDialog(null,"You don't have any crops yet!");
+				} else if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left"); 
+				} else {
+				listCropItems.setListData(cropItemList());
+				listCropsCropItem.setListData(cropVarieties());
+				panelCrops.setVisible(false);
+				panelCropItems.setVisible(true);
+				updateFarmInfo();
+				}
+			}
+		});
+		btnUseCropItem.setBounds(196, 346, 181, 52);
+		panelCrops.add(btnUseCropItem);
+		
+		JButton btnHarvest = new JButton("Harvest");
+		btnHarvest.setBounds(10, 346, 181, 52);
+		panelCrops.add(btnHarvest);
+		btnHarvest.setToolTipText("Uses 1 action point to harvest all crops ready to harvest");
+		
+		JScrollPane scrollPaneCrops = new JScrollPane();
+		scrollPaneCrops.setBounds(10, 36, 367, 299);
+		panelCrops.add(scrollPaneCrops);
+		
+		listCrops = new JList<String>();
+		scrollPaneCrops.setViewportView(listCrops);
+		listCrops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listCrops.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = cropList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
+		btnHarvest.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left");
+				} else {
+					int income = farm.harvest();
+					if (income == 0) {
+						JOptionPane.showMessageDialog(null,"no crops ready for harvest");
+				} else {
+					JOptionPane.showMessageDialog(null,"$" + income + " earned from harvest");
+					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
+					updateFarmInfo();
+					listCrops.setListData(cropList());
+				}
+			}
+			}
+		});
+		
 		panelCropItems = new JPanel();
 		panelCropItems.setLayout(null);
 		panelCropItems.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
@@ -257,65 +328,6 @@ public class GameWindow {
 		lblCropsCropItems.setBounds(10, 176, 367, 14);
 		panelCropItems.add(lblCropsCropItems);
 		
-		panelFeedLivestock = new JPanel();
-		panelFeedLivestock.setLayout(null);
-		panelFeedLivestock.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelFeedLivestock.setBounds(11, 54, 387, 409);
-		frmFarmOwnerSimulator.getContentPane().add(panelFeedLivestock);
-		panelFeedLivestock.setVisible(false);
-		
-		JLabel labelLivestockInventory = new JLabel("Livestock Feeding Inventory");
-		labelLivestockInventory.setHorizontalAlignment(SwingConstants.CENTER);
-		labelLivestockInventory.setBounds(10, 11, 367, 14);
-		panelFeedLivestock.add(labelLivestockInventory);
-		
-		listFeedingList = new JList<String>();
-		listFeedingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listFeedingList.setBounds(10, 36, 367, 299);
-		listFeedingList.setModel(new AbstractListModel<String>() {
-			private static final long serialVersionUID = 1L;
-			String[] values = animalItemList();
-			public int getSize() {
-				return values.length;
-			}
-			public String getElementAt(int index) {
-				return values[index];
-			}
-		});
-		panelFeedLivestock.add(listFeedingList);
-		
-		JButton buttonUseFood = new JButton("Confirm (Use Item)");
-		buttonUseFood.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String animalItemString = listFeedingList.getSelectedValue();
-				if (animalItemString == null) {
-					JOptionPane.showMessageDialog(null,"please select an item");
-				} else {
-					useFoodItem(animalItemString);
-					listFeedingList.setListData(animalItemList());
-					panelLivestock.setVisible(true);
-					panelFeedLivestock.setVisible(false);
-					updateFarmInfo();
-				}
-
-			}
-		});
-		buttonUseFood.setToolTipText("Uses 1 action point to increase happiness");
-		buttonUseFood.setBounds(196, 346, 181, 52);
-		panelFeedLivestock.add(buttonUseFood);
-		
-		JButton buttonLivestockReturn = new JButton("Back");
-		buttonLivestockReturn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				panelLivestock.setVisible(true);
-				panelFeedLivestock.setVisible(false);
-				updateFarmInfo();
-			}
-		});
-		buttonLivestockReturn.setToolTipText("Uses 1 action point to increase health");
-		buttonLivestockReturn.setBounds(10, 346, 181, 52);
-		panelFeedLivestock.add(buttonLivestockReturn);
-		
 		panelLivestock = new JPanel();
 		panelLivestock.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panelLivestock.setBounds(11, 54, 387, 409);
@@ -326,21 +338,6 @@ public class GameWindow {
 		lblLivestock.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLivestock.setBounds(10, 11, 367, 14);
 		panelLivestock.add(lblLivestock);
-		
-		listLivestock = new JList<String>();
-		listLivestock.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listLivestock.setBounds(10, 36, 367, 299);
-		listLivestock.setModel(new AbstractListModel<String>() {
-			private static final long serialVersionUID = 1L;
-			String[] values = animalList();
-			public int getSize() {
-				return values.length;
-			}
-			public String getElementAt(int index) {
-				return values[index];
-			}
-		});
-		panelLivestock.add(listLivestock);
 
 		
 		JButton btnPlayWithAnimals = new JButton("Play");
@@ -365,6 +362,24 @@ public class GameWindow {
 		btnFeedAnimals.setToolTipText("Uses 1 action point to increase health");
 		btnFeedAnimals.setBounds(10, 346, 181, 52);
 		panelLivestock.add(btnFeedAnimals);
+		
+		JScrollPane scrollPaneLivestock = new JScrollPane();
+		scrollPaneLivestock.setBounds(10, 39, 367, 296);
+		panelLivestock.add(scrollPaneLivestock);
+		
+		listLivestock = new JList<String>();
+		scrollPaneLivestock.setViewportView(listLivestock);
+		listLivestock.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listLivestock.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = animalList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 		btnFeedAnimals.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!farm.actionValid()) {
@@ -377,74 +392,6 @@ public class GameWindow {
 				}
 				listLivestock.setListData(animalList());
 				updateFarmInfo();
-			}
-		});
-		
-		panelCrops = new JPanel();
-		panelCrops.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panelCrops.setLayout(null);
-		panelCrops.setBounds(408, 54, 387, 409);
-		frmFarmOwnerSimulator.getContentPane().add(panelCrops);
-		
-		JLabel lblCrops = new JLabel("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
-		lblCrops.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCrops.setBounds(10, 11, 367, 14);
-		panelCrops.add(lblCrops);
-		
-		listCrops = new JList<String>();
-		listCrops.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listCrops.setBounds(10, 36, 367, 299);
-		listCrops.setModel(new AbstractListModel<String>() {
-			private static final long serialVersionUID = 1L;
-			String[] values = cropList();
-			public int getSize() {
-				return values.length;
-			}
-			public String getElementAt(int index) {
-				return values[index];
-			}
-		});
-		panelCrops.add(listCrops);
-		
-		JButton btnUseCropItem = new JButton("Use Crop Item (One Veriety)");
-		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
-		btnUseCropItem.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (farm.getCrops().size() == 0) {
-					JOptionPane.showMessageDialog(null,"You don't have any crops yet!");
-				} else if (!farm.actionValid()) {
-					JOptionPane.showMessageDialog(null,"no action points left"); 
-				} else {
-				listCropItems.setListData(cropItemList());
-				listCropsCropItem.setListData(cropVarieties());
-				panelCrops.setVisible(false);
-				panelCropItems.setVisible(true);
-				updateFarmInfo();
-				}
-			}
-		});
-		btnUseCropItem.setBounds(196, 346, 181, 52);
-		panelCrops.add(btnUseCropItem);
-		
-		JButton btnHarvest = new JButton("Harvest");
-		btnHarvest.setBounds(10, 346, 181, 52);
-		panelCrops.add(btnHarvest);
-		btnHarvest.setToolTipText("Uses 1 action point to harvest all crops ready to harvest");
-		btnHarvest.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (!farm.actionValid()) {
-					JOptionPane.showMessageDialog(null,"no action points left");
-				} else {
-					int income = farm.harvest();
-					if (income == 0) {
-						JOptionPane.showMessageDialog(null,"no crops ready for harvest");
-				} else {
-					JOptionPane.showMessageDialog(null,"$" + income + " earned from harvest");
-					lblCrops.setText("Crops  (" + farm.getCrops().size() + "/" + farm.getMaxCrops() + ")");
-					updateFarmInfo();
-					listCrops.setListData(cropList());
-				}
-			}
 			}
 		});
 		
@@ -514,6 +461,7 @@ public class GameWindow {
 						JOptionPane.showMessageDialog(null,"Congratulations! "
 								+ "you have finished the game with a total of $" + farm.getMoney()
 								+ " and a score of " + farm.getScore() + "!");
+						closeWindow();
 				}
 				
 			}
@@ -529,6 +477,69 @@ public class GameWindow {
 		});
 		btnVisitStore.setBounds(406, 11, 179, 51);
 		panelMisc.add(btnVisitStore);
+		
+		panelFeedLivestock = new JPanel();
+		panelFeedLivestock.setLayout(null);
+		panelFeedLivestock.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panelFeedLivestock.setBounds(11, 54, 387, 409);
+		frmFarmOwnerSimulator.getContentPane().add(panelFeedLivestock);
+		panelFeedLivestock.setVisible(false);
+		
+		JLabel labelLivestockInventory = new JLabel("Livestock Feeding Inventory");
+		labelLivestockInventory.setHorizontalAlignment(SwingConstants.CENTER);
+		labelLivestockInventory.setBounds(10, 11, 367, 14);
+		panelFeedLivestock.add(labelLivestockInventory);
+		
+		JButton buttonUseFood = new JButton("Confirm (Use Item)");
+		buttonUseFood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String animalItemString = listFeedingList.getSelectedValue();
+				if (animalItemString == null) {
+					JOptionPane.showMessageDialog(null,"please select an item");
+				} else {
+					useFoodItem(animalItemString);
+					listFeedingList.setListData(animalItemList());
+					panelLivestock.setVisible(true);
+					panelFeedLivestock.setVisible(false);
+					updateFarmInfo();
+				}
+
+			}
+		});
+		buttonUseFood.setToolTipText("Uses 1 action point to increase happiness");
+		buttonUseFood.setBounds(196, 346, 181, 52);
+		panelFeedLivestock.add(buttonUseFood);
+		
+		JButton buttonLivestockReturn = new JButton("Back");
+		buttonLivestockReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelLivestock.setVisible(true);
+				panelFeedLivestock.setVisible(false);
+				updateFarmInfo();
+			}
+		});
+		buttonLivestockReturn.setToolTipText("Uses 1 action point to increase health");
+		buttonLivestockReturn.setBounds(10, 346, 181, 52);
+		panelFeedLivestock.add(buttonLivestockReturn);
+		
+		JScrollPane scrollPaneFeedLivestock = new JScrollPane();
+		scrollPaneFeedLivestock.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPaneFeedLivestock.setBounds(10, 39, 367, 296);
+		panelFeedLivestock.add(scrollPaneFeedLivestock);
+		
+		listFeedingList = new JList<String>();
+		scrollPaneFeedLivestock.setViewportView(listFeedingList);
+		listFeedingList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		listFeedingList.setModel(new AbstractListModel<String>() {
+			private static final long serialVersionUID = 1L;
+			String[] values = animalItemList();
+			public int getSize() {
+				return values.length;
+			}
+			public String getElementAt(int index) {
+				return values[index];
+			}
+		});
 	}
 	
 	// update all labels presenting user with basic farm info

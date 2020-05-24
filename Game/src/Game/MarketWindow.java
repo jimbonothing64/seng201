@@ -48,6 +48,11 @@ public class MarketWindow {
 			farm.addCrop(plant);
 		}
 	}
+	/**
+	 * add crop item to farm
+	 * @param farm object to add the crop item to
+	 * @param amount cost of item used to determine which item was purchased
+	 */
 	public void addCropItem(Farm farm, int amount) {
 		if (amount == 2) {
 			CropItem item = new CropItem("fertiliser");
@@ -60,7 +65,11 @@ public class MarketWindow {
 			farm.addCropItem(item);
 		}
 	}
-	
+	/**
+	 * add animal item to farm
+	 * @param farm object to add the animal item to
+	 * @param amount cost of item used to determine which item was purchased
+	 */
 	public void addAnimalItem(Farm farm, int amount) {
 		if (amount == 2) {
 			AnimalItem item = new AnimalItem("hay");
@@ -73,7 +82,11 @@ public class MarketWindow {
 			farm.addAnimalItem(item);
 		}
 	}
-	
+	/**
+	 * add animal to farm
+	 * @param farm object to add animal to
+	 * @param amount cost of animal used to determine which item was purchased 
+	 */
 	public void addAnimal(Farm farm, int amount) {
 		if (amount == 3) {
 			Animal animal = new Chicken();
@@ -86,6 +99,10 @@ public class MarketWindow {
 			farm.addAnimal(animal);
 		}
 	}
+	/**
+	 * run window
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -101,7 +118,6 @@ public class MarketWindow {
 
 	/**
 	 * Create the application.
-	 * @wbp.parser.entryPoint
 	 */
 	public MarketWindow() {
 		

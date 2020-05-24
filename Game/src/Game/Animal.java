@@ -44,7 +44,7 @@ public class Animal {
 	 * @param happy - base happiness when purchased
 	 * @param reward - base income generated daily when purchased
 	 * @param healthLevel - the health the animal has when purchased
-	 */
+	 */	
 	public Animal(String type, int price, int happy, int reward, int healthLevel) {
 		animalType = type;
 		purchacePrice = price;

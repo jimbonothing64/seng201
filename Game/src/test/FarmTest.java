@@ -12,7 +12,7 @@ import Game.CropItem;
 import Game.Farm;
 import Game.Farmer;
 import Game.Pig;
-/* tests the functionality of the farm class with interactions within
+/** tests the functionality of the farm class with interactions within
  * and outside of the class. many other classes are contained within the farm
  * as it is the primary class of the game. 
  */

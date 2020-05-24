@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
+//ACTION POINTS ON FEED
 public class GameWindow {
 
 	private JFrame frmFarmOwnerSimulator;

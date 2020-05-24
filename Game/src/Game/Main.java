@@ -1,20 +1,33 @@
 package Game;
-/* the main game engine that runs the whole game
+/**
+ *  the main game engine that runs the whole game
  *  by tying all classes together
  * static variables that are used throughout the game are instantiated
  * run this class to play the game.
  */
 public class Main {
+	/**
+	 * set Farm variable to pass around the object through
+	 * to other windows
+	 */
 	private Farm farm;
-	
+	/**
+	 * @param newFarm takes the farm object created 
+	 * in farm setup and stores it
+	 */
 	public void setFarm(Farm newFarm) {
 		farm = newFarm;
 	}
-	
+	/**
+	 * @return the stored farm object 
+	 */
 	public Farm getFarm() {
 		return farm;
 	}
-	
+	/**
+	 * 
+	 * @param outManager
+	 */
 	public void launchSetupWindow(Main outManager) {
 		FarmSetupWindow setupWindow = new FarmSetupWindow(outManager);
 	}

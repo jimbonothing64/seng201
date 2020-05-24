@@ -36,6 +36,9 @@ public class CropItem {
 		} else if (type == "compost") {
 			cost = 35;
 			growth = 4;
+		} else if (type == "water") {
+			cost = 0;
+			growth = 1;
 		}
 	}
 	

@@ -92,40 +92,13 @@ public class Farm {
 		totalDays = days;
 		currentDay = 0;
 		happyDecay = 1;
+		cropItems.add(new CropItem("water"));
 		if (type == "Swiss Alps Meadow") {
 			pettingBonus = 1;
 		} else if(type == "Fixer-Upper") {
 			money = 200;
 		}
 	}
-	
-	public String getAnimalInfo () {
-		String animalInfo = "Animal List:\n";
-		
-		if (animals.size() < 1) {
-			animalInfo = "You have no animals";
-		}
-		
-		for (int i = 0; i < animals.size(); i++) {
-			animalInfo += animals.get(i).toString() + "\n";
-		}
-		
-		return animalInfo;
-	}
-	
-	public String getCropInfo() {
-		String cropInfo = "Crop list:\n";
-		
-		if (crops.size() < 1) {
-			cropInfo = "You have no crops";
-		}
-		for (int i = 0; i < crops.size(); i++) {
-			cropInfo += crops.get(i).toString() + "\n";
-		}
-		
-		return cropInfo;
-	}
-	
 	/**
 	 * @return a string of the farmer's name and age
 	 * to be displayed at the top of the game screen
@@ -292,6 +265,9 @@ public class Farm {
 	 */
 	public void consumeCropItem(CropItem item) {
 		for (CropItem cropItem : cropItems) {
+			if (cropItem.getName() == "water") {
+				break;
+			}
 			if (cropItem.getName() == item.getName()) {
 				cropItems.remove(cropItem);
 				break;

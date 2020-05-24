@@ -410,7 +410,7 @@ public class GameWindow {
 		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
 		btnUseCropItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (farm.getCropInfo() == "You have no crops") {
+				if (farm.getCrops().size() == 0) {
 					JOptionPane.showMessageDialog(null,"You don't have any crops yet!");
 				} else if (!farm.actionValid()) {
 					JOptionPane.showMessageDialog(null,"no action points left"); 

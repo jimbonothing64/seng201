@@ -28,13 +28,16 @@ class FarmTest {
 	}
 	
 	@Test 
-	// item stored at array matches same item instance
+	/**
+	 *  item stored at array matches same item instance
+	 *  crop item is at index 1 since water is at index 0
+	 */
 	public void itemsTest() {
 		AnimalItem aitem = new AnimalItem("hay");
 		CropItem citem = new CropItem("fertiliser");
 		testFarm.addCropItem(citem);
 		testFarm.addAnimalItem(aitem);
-		assertEquals(testFarm.getCropItems().get(0), citem);
+		assertEquals(testFarm.getCropItems().get(1), citem);
 		assertEquals(testFarm.getAnimalItems().get(0), aitem);
 	}
 	
@@ -47,7 +50,7 @@ class FarmTest {
 		testFarm.addAnimalItem(aitem);
 		testFarm.consumeCropItem(citem);
 		testFarm.consumeAnimalItem(aitem);
-		assertEquals(testFarm.getCropItems().size(),0);
+		assertEquals(testFarm.getCropItems().size(),2);
 		assertEquals(testFarm.getAnimalItems().size(), 0);
 	}
 	@Test

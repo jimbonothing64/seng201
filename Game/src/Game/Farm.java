@@ -270,7 +270,7 @@ public class Farm {
 		//remove first instance of crop item
 		for (CropItem cropItem : cropItems) {
 			//if water do not consume
-			if (cropItem.getName() == "water") {
+			if (item.getName() == "water") {
 				break;
 			}
 			if (cropItem.getName() == item.getName()) {

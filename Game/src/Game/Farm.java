@@ -126,7 +126,6 @@ public class Farm {
 	public int getActionPoints() {
 		return actionPoints;
 	}
-
 	/**
 	 * @param sets the amount of money for the farm 
 	 */
@@ -294,7 +293,6 @@ public class Farm {
 			}
 		}
 	}
-	
 	/**
 	 *  feed all animals with
 	 * @param item health and happiness
@@ -307,7 +305,6 @@ public class Farm {
 			animals.get(i).feedItem(item);
 		}
 	}
-	
 	/**
 	 *  pet all animals, increasing their
 	 *  happiness by 1 or by 2 if class perk
@@ -367,7 +364,6 @@ public class Farm {
 		crops = updatedArray;
 		return total;
 	}
-	
 	/**
 	 * give rewards for end of day for each animal
 	 * @return the money generated from farm animals
@@ -402,7 +398,5 @@ public class Farm {
 		actionPoints = 0;
 		return earnings;
 	}
-	
-
 }
 

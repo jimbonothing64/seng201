@@ -299,11 +299,13 @@ public class Farm {
 		}
 	}
 	/**
-	 * checks if each crop in the farm matches
+	 * checks if each crop in the farm matches and uses item
+	 * on all crops of that type
 	 * @param inCrop -the crop type selected for item use
 	 * @param inCropItem -item benefits gained by the crop type
 	 */
 	public void useCropItem(Crop inCrop, CropItem inCropItem) {
+		actionPoints += 1;
 		for (Crop crop : crops) {
 			if (crop.getName() == inCrop.getName()) {
 				crop.useItem(inCropItem);
@@ -317,6 +319,7 @@ public class Farm {
 	 * added to fed animals in farm
 	 */
 	public void feedAnimals(AnimalItem item) {
+		actionPoints += 1;
 		for (int i = 0; i < animals.size(); i++) {
 			animals.get(i).feedItem(item);
 		}

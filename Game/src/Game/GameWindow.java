@@ -200,7 +200,7 @@ public class GameWindow {
 			}
 		});
 		
-		JButton buttonUseCropItem = new JButton("Use Crop Item (Confirm)");
+		JButton buttonUseCropItem = new JButton("Use Crop Item");
 		buttonUseCropItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String selectedCrop = listCropsCropItem.getSelectedValue();
@@ -212,6 +212,7 @@ public class GameWindow {
 					listCrops.setListData(cropList());
 					panelCropItems.setVisible(false);
 					panelCrops.setVisible(true);
+					updateFarmInfo();
 				}
 			}
 		});
@@ -411,6 +412,8 @@ public class GameWindow {
 			public void actionPerformed(ActionEvent e) {
 				if (farm.getCropInfo() == "You have no crops") {
 					JOptionPane.showMessageDialog(null,"You don't have any crops yet!");
+				} else if (!farm.actionValid()) {
+					JOptionPane.showMessageDialog(null,"no action points left"); 
 				} else {
 				listCropItems.setListData(cropItemList());
 				listCropsCropItem.setListData(cropVarieties());

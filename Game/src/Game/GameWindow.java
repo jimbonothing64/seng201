@@ -182,6 +182,7 @@ public class GameWindow {
 		
 		farm.feedAnimals(animalItem);
 		farm.consumeAnimalItem(animalItem);
+		listLivestock.setListData(animalList());
 	}
 	/**
 	 * use a crop item using farm methods
@@ -214,6 +215,7 @@ public class GameWindow {
 		
 		farm.useCropItem(crop, cropItem);
 		farm.consumeCropItem(cropItem);
+		listCrops.setListData(cropList());
 		}
 	/**
 	 * update GUI labels (used when action is performed)
@@ -246,7 +248,7 @@ public class GameWindow {
 		lblCrops.setBounds(10, 11, 367, 14);
 		panelCrops.add(lblCrops);
 		
-		JButton btnUseCropItem = new JButton("Use Crop Item (One Veriety)");
+		JButton btnUseCropItem = new JButton("Use Crop Item (One Variety)");
 		btnUseCropItem.setToolTipText("Uses 1 action point to speed up harvest");
 		btnUseCropItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

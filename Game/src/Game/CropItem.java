@@ -28,13 +28,13 @@ public class CropItem {
 		name = type;
 		
 		if (type == "fertiliser") {
-			cost = 20;
+			cost = 2;
 			growth = 2;
 		} else 	if (type == "rootblast") {
-			cost = 45;
+			cost = 4;
 			growth = 5;
 		} else if (type == "compost") {
-			cost = 35;
+			cost = 3;
 			growth = 4;
 		} else if (type == "water") {
 			cost = 0;

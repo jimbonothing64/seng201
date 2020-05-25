@@ -9,8 +9,7 @@ To open program source code in eclipse:
 To run the game from source:
   When in eclipse run "Main" class, located in Game/src/Game/Main.java
 
-
-
-      Ensure Java 11 is installed on the machine
-      Open the zip folder in a terminal window
-      Run "java -jar usercode1_usercode2_SpaceExplorer.jar"
+To run the game from JAR file:
+    1. Ensure Java 11 is installed on the machine
+    2. Open the zip folder in a terminal window
+    3. Run "java -jhn27_wth37_SpaceExplorer.jar"

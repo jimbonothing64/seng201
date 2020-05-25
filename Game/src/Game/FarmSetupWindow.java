@@ -22,7 +22,10 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * gui screen for farm setup window
+ *
+ */
 public class FarmSetupWindow {
 	
 	/**
@@ -66,7 +69,7 @@ public class FarmSetupWindow {
 	/**
 	 * Constructor for the application.
 	 * runs the setup window when called 
-	 * @param Main game manager
+	 * @param inMain Main game manager
 	 * 
 	 */
 	public FarmSetupWindow(Main inMain) {

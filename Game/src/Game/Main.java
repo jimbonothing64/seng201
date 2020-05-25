@@ -1,7 +1,8 @@
 package Game;
-/* the main game engine that runs the whole game
-/** the main game engine that runs the whole game
- *  by tying all classes together
+
+/** 
+ * the main game engine that runs the whole game
+ *  by tying all classes together.
  * static variables that are used throughout the game are instantiated
  * run this class to play the game.
  *  static variables that are used throughout the game are instantiated
@@ -72,7 +73,7 @@ public class Main {
 	
 	/**
 	 * go from market window to main window
-	 * @param marketWindow
+	 * @param marketWindow gui window for market screen
 	 */
 	public void closeMarketWindow(MarketWindow marketWindow) {
 		marketWindow.closeWindow();
@@ -81,7 +82,7 @@ public class Main {
 	
 	/**
 	 * runs a new game
-	 * @param args
+	 * @param args arguments
 	 */
 	public static void main(String[] args) {
 		Main manager = new Main();

@@ -1,13 +1,12 @@
 package Game;
+import java.util.ArrayList;
 /**
  * farm class is the environment the player plays in.
  * the player may choose between different farm types for different bonuses.
  * This is the biggest class and ties many of the other classes together
  * through its methods and stores objects within its ArrayLists
  */
-import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
 
 public class Farm {
 	/**
@@ -127,7 +126,7 @@ public class Farm {
 		return actionPoints;
 	}
 	/**
-	 * @param sets the amount of money for the farm 
+	 * @param amount of money set for the farm 
 	 */
 	public void setMoney(int amount) {
 		money = amount;
@@ -182,13 +181,13 @@ public class Farm {
 		}
 	}
 	/**
-	 * @param animal item added into farm inventory
+	 * @param item for animal added into farm inventory
 	 */
 	public void addAnimalItem(AnimalItem item) {
 		animalItems.add(item);
 	}
 	/**
-	 * @param crop item added into farm inventory
+	 * @param item for crop added into farm inventory
 	 */
 	public void addCropItem(CropItem item) {
 		cropItems.add(item);
@@ -239,7 +238,7 @@ public class Farm {
 	}
 	/**
 	 * matures each crop in farm by
-	 * @param amount of days 
+	 * @param day: amount of days 
 	 * crops grow by 1 at the end of each day
 	 */
 	public void growCrops(int day) {

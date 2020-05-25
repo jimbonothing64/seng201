@@ -1,8 +1,4 @@
 package Game;
-/**
- * The main GUI for the game used to view animals, crops
- * , items, do actions and view the marketplace
- */
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -23,7 +19,10 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
-
+/**
+ * The main GUI for the game used to view animals, crops
+ * , items, do actions and view the marketplace
+ */
 public class GameWindow {
 /**
  *  Object for GUI
@@ -76,6 +75,7 @@ public class GameWindow {
 
 	/**
 	 * Launch the application.
+	 * @param args arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -186,7 +186,8 @@ public class GameWindow {
 	}
 	/**
 	 * use a crop item using farm methods
-	 * @param inString string provided by GUI
+	 * @param inStringCropItem string repr of cropitem
+	 * @param inStringCrop string repr of Crop
 	 */
 	public void useCropItem(String inStringCropItem, String inStringCrop) {
 		CropItem cropItem;

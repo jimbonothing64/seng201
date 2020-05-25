@@ -1,5 +1,5 @@
 package Game;
-/*
+/**
  * The Farmer class is the character played by the user
  * they may set a name and an age for this character.
  */

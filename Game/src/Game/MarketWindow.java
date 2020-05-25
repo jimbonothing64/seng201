@@ -16,7 +16,10 @@ import java.awt.Color;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 
-
+/**
+ * gui screen for the shop screen
+ *
+ */
 public class MarketWindow {
 
 	private JFrame frame;
@@ -26,6 +29,12 @@ public class MarketWindow {
 
 	/**
 	 * Launch the application.
+	 */
+	
+	/**
+	 * adds crop item to farm based on the the cost of item purchased
+	 * @param farm object to store crop item in 
+	 * @param amount of money the item costs
 	 */
 	public void addCrop(Farm farm, int amount) {
 		if (amount == 2) {
@@ -101,7 +110,7 @@ public class MarketWindow {
 	}
 	/**
 	 * run window
-	 * @param args
+	 * @param args arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

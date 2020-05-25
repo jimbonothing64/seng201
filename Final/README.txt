@@ -12,4 +12,4 @@ To run the game from source:
 To run the game from JAR file:
     1. Ensure Java 11 is installed on the machine
     2. Open the zip folder in a terminal window
-    3. Run "java -jhn27_wth37_SpaceExplorer.jar"
+    3. Run "java -jhn27_wth37_FarmingSimulator.jar"
